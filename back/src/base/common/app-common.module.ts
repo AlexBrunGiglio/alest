@@ -7,7 +7,7 @@ import { UsersService } from "../../modules/users.service";
 @Module({
     imports: [
         TypeOrmModule.forFeature([
-            User
+            User,
         ]),
     ],
     controllers: [
