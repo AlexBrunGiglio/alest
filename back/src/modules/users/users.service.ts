@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { ApplicationBaseModelService } from "../base/base-model.service";
+import { ApplicationBaseModelService } from "../../base/base-model.service";
 import { GetUserResponse, GetUsersResponse, UserDto } from "./user-dto";
 import { User } from "./user.entity";
 

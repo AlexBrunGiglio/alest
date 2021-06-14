@@ -2,9 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { AppCommonModule } from './base/common/app-common.module';
 import { Environment } from './environment/environment';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -16,21 +15,20 @@ import { Environment } from './environment/environment';
       password: Environment.db_password,
       database: Environment.db_name,
       logging: Environment.db_log_enabled,
-      entities: [],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
       extra: { timezone: "utc" },
     }),
-    AppCommonModule,
+    UsersModule
   ],
   controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {
   constructor(
     private connection: Connection,
   ) {
     this.init();
-    connection.subscribers.push();
+    this.connection.subscribers.push();
   }
 
   private async init() {
