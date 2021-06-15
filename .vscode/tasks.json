@@ -15,7 +15,7 @@
 			"path": "back/",
 			"problemMatcher": [],
 			"label": "Start Back",
-			"detail": "nest start"
+			"detail": "nodemon --verbose"
 		},
 		{
 			"type": "npm",
