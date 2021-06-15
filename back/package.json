@@ -18,7 +18,7 @@
         "test:cov": "jest --coverage",
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
         "test:e2e": "jest --config ./test/jest-e2e.json",
-        "nswag-generate-client": "ts-node --project swagger/tools.tsconfig.json swagger/nswag-generate-client.ts"
+        "nswag-generate-client": "ts-node --project ./swagger/tools.tsconfig.json ./swagger/nswag-generate-client.ts"
     },
     "dependencies": {
         "@nestjs/common": "^7.0.0",
