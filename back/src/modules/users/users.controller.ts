@@ -1,12 +1,14 @@
-import { Controller, Get, HttpCode, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BaseController } from '../../base/base.controller';
 import { Roles } from '../../base/services/roles.decorator';
-import { GetUsersResponse } from './user-dto';
+import { GetUserResponse, GetUsersResponse, UserDto } from './user-dto';
 import { UsersService } from './users.service';
 import { RolesList } from '../../../../shared/shared-constant'
-@Controller('users')
+import { AppErrorWithMessage } from '../../base/app-error';
+import { GenericResponse } from '../../base/generic-response';
 @ApiTags('users')
+@Controller('users')
 export class UsersController extends BaseController {
     constructor(
         private readonly usersService: UsersService,
@@ -22,5 +24,40 @@ export class UsersController extends BaseController {
     @HttpCode(200)
     async getAll(): Promise<GetUsersResponse> {
         return await this.usersService.findAll();
+    }
+
+    @UseGuards()
+    @Roles(RolesList.Admin)
+    @Get(':id')
+    @ApiBearerAuth()
+    @ApiOperation({ summary: 'Get user', operationId: 'getUser' })
+    @ApiResponse({ status: 200, description: 'Get user', type: GetUserResponse })
+    @HttpCode(200)
+    async get(@Param('id') id: string): Promise<GetUserResponse> {
+        return await this.usersService.findOne({ where: { id: id } });
+    }
+
+    @UseGuards()
+    @Roles(RolesList.Admin)
+    @Post()
+    @ApiBearerAuth()
+    @ApiOperation({ summary: 'Create or update user', operationId: 'createOrUpdateUser' })
+    @ApiResponse({ status: 200, description: 'Create or update user', type: GetUserResponse })
+    @HttpCode(200)
+    async createOrUpdate(@Body() candidateResumeDto: UserDto): Promise<GetUserResponse> {
+        if (!candidateResumeDto)
+            throw new AppErrorWithMessage('Invalid Request');
+        return await this.usersService.createOrUpdate(candidateResumeDto);
+    }
+
+    @UseGuards()
+    @Roles(RolesList.Admin)
+    @Delete()
+    @ApiBearerAuth()
+    @ApiOperation({ summary: 'Delete users', operationId: 'deleteUsers' })
+    @ApiResponse({ status: 200, description: 'Delete users from ID', type: GenericResponse })
+    @HttpCode(200)
+    async deleteUsers(@Query('userIds') userIds: string): Promise<GenericResponse> {
+        return await this.usersService.delete(userIds.split(','));
     }
 }
