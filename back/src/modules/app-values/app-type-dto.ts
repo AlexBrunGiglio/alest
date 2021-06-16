@@ -32,3 +32,11 @@ export class FindAppTypesRequest extends BaseSearchRequest {
     })
     appTypesCodes: string;
 }
+
+export class GetTypeValuesRequest extends BaseSearchRequest {
+    @ApiProperty()
+    appTypeCode: string;
+
+    @ApiPropertyOptional()
+    alsoDisabled?: string;
+}

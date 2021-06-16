@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { AppController } from './app.controller';
+import { ReferentialController } from './base/controllers/referential.controller';
+import { ReferentialService } from './base/services/referential.service';
 import { Environment } from './environment/environment';
 import { AppType } from './modules/app-values/app-type.entity';
 import { AppValue } from './modules/app-values/app-value.entity';
@@ -27,7 +29,13 @@ import { UsersModule } from './modules/users/users.module';
     ]),
     UsersModule
   ],
-  controllers: [AppController],
+  controllers: [
+    AppController,
+    ReferentialController
+  ],
+  providers: [
+    ReferentialService,
+  ]
 })
 export class AppModule {
   constructor(
