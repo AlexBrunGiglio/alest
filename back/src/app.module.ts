@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { AppController } from './app.controller';
 import { Environment } from './environment/environment';
+import { AppType } from './modules/app-values/app-type.entity';
+import { AppValue } from './modules/app-values/app-value.entity';
 import { UsersModule } from './modules/users/users.module';
 
 @Module({
@@ -19,6 +21,10 @@ import { UsersModule } from './modules/users/users.module';
       synchronize: true,
       extra: { timezone: "utc" },
     }),
+    TypeOrmModule.forFeature([
+      AppValue,
+      AppType,
+    ]),
     UsersModule
   ],
   controllers: [AppController],
