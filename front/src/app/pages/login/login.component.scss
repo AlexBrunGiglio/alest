@@ -8,10 +8,11 @@ app-login {
         background: linear-gradient(90deg, #4778ff, #2553cf);
     }
     .auth-left {
-        padding: 5rem 8rem;
+        padding: 3rem 6rem;
         .auth-title {
             font-size: 4rem;
             margin-bottom: 1rem;
+            line-height: 45px;
         }
         .auth-subtitle {
             font-size: 1.2rem;
@@ -19,7 +20,11 @@ app-login {
             color: #a8aebb;
         }
         .auth-logo {
-            margin-bottom: 2rem;
+            // margin-bottom: 2rem;
+            a {
+                display: flex;
+                justify-content: center;
+            }
             img {
                 height: 2rem;
             }

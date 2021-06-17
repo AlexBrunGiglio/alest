@@ -3,7 +3,7 @@
         <div class="col-lg-5 col-12">
             <div class="auth-left">
                 <div class="auth-logo">
-                    <a href="index.html"><img src="assets/icons/logo.svg" alt="Logo" style="height: 100px;"></a>
+                    <a href="index.html"><img src="assets/icons/logo.svg" alt="Logo" style="height: 230px;"></a>
                 </div>
                 <h1 class="auth-title">Se connecter</h1>
                 <p class="auth-subtitle mb-5">Connectez vous avec les informations que vous avez renseigner lors de votre incription.</p>
@@ -16,10 +16,18 @@
                         </div>
                     </div>
                     <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="password" class="form-control form-control-xl" placeholder="Mot de passe">
+                        <!-- <input type="password" class="form-control form-control-xl" placeholder="Mot de passe">
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
-                        </div>
+                        </div> -->
+                        <mat-form-field appearance="outline">
+                            <mat-label>Enter your password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+
                     </div>
                     <!-- <div class="form-check form-check-lg d-flex align-items-end">
                         <input class="form-check-input me-2" type="checkbox" value="" class="flexCheckDefault">
@@ -31,7 +39,7 @@
                 </form>
                 <div class="text-center mt-5 text-lg fs-4">
                     <p class="sub-infos">Pas de compte ? <a href="auth-register.html" class="font-bold">Inscrivez vous</a>.</p>
-                    <p class="sub-infos"><a class="font-bold" href="auth-forgot-password.html">Mot de passe oublié?</a>.</p>
+                    <p class="sub-infos"><a class="font-bold" href="auth-forgot-password.html">Mot de passe oublié ?</a></p>
                 </div>
             </div>
         </div>
