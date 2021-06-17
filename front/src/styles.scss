@@ -15,15 +15,7 @@ $front-accent: mat-palette($mat-pink, A200, A100, A400);
 $front-warn: mat-palette($mat-red);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$front-theme: mat-light-theme(
-    (
-        color: (
-            primary: $front-primary,
-            accent: $front-accent,
-            warn: $front-warn,
-        ),
-    )
-);
+$front-theme: mat-light-theme( ( color: ( primary: $front-primary, accent: $front-accent, warn: $front-warn, ), ));
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -45,15 +37,7 @@ $front-accent: mat-palette($mat-pink, A200, A100, A400);
 $front-warn: mat-palette($mat-red);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$front-theme: mat-light-theme(
-    (
-        color: (
-            primary: $front-primary,
-            accent: $front-accent,
-            warn: $front-warn,
-        ),
-    )
-);
+$front-theme: mat-light-theme( ( color: ( primary: $front-primary, accent: $front-accent, warn: $front-warn, ), ));
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -79,6 +63,11 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #435ebe;
 }
 
 .btn .badge {
@@ -163,6 +152,11 @@ body {
     color: #fff;
 }
 
+.btn-primary {
+    background-color: #4778ff;
+    border-color: #4778ff;
+}
+
 .btn.btn-light {
     color: #607080;
 }
@@ -179,7 +173,7 @@ body {
     border: 1px solid #dfe3e7;
 }
 
-.btn-group > .btn {
+.btn-group>.btn {
     border-radius: 0.267rem;
 }
 
@@ -234,7 +228,7 @@ body {
     font-weight: 700;
 }
 
-.card .card-header ~ .card-body {
+.card .card-header~.card-body {
     padding-top: 0;
 }
 
@@ -307,8 +301,8 @@ body {
     padding-top: 2rem;
 }
 
-.form-group.with-title .form-control:focus ~ label,
-.form-group.with-title dataTable-input:focus ~ label {
+.form-group.with-title .form-control:focus~label,
+.form-group.with-title dataTable-input:focus~label {
     border-left: 1px solid #435ebe;
     border-top: 1px solid #435ebe;
     border-right: 1px solid #435ebe;
@@ -330,8 +324,8 @@ body {
     right: 0;
 }
 
-.form-group[class*="has-icon-"] .form-control:focus ~ .form-control-icon i,
-.form-group[class*="has-icon-"] .form-control:focus ~ .form-control-icon svg {
+.form-group[class*="has-icon-"] .form-control:focus~.form-control-icon i,
+.form-group[class*="has-icon-"] .form-control:focus~.form-control-icon svg {
     color: #5a8dee;
 }
 
@@ -339,11 +333,11 @@ body {
     padding-left: 3rem;
 }
 
-.form-group[class*="has-icon-"] .form-control.form-control-xl ~ .form-control-icon i {
+.form-group[class*="has-icon-"] .form-control.form-control-xl~.form-control-icon i {
     font-size: 1.6rem;
 }
 
-.form-group[class*="has-icon-"] .form-control.form-control-xl ~ .form-control-icon i:before {
+.form-group[class*="has-icon-"] .form-control.form-control-xl~.form-control-icon i:before {
     color: #a6a8aa;
 }
 
@@ -380,8 +374,8 @@ body {
 }
 
 .form-check .form-check-input.form-check-primary {
-    background-color: #435ebe;
-    border-color: #435ebe;
+    background-color: #4778ff;
+    border-color: #4778ff;
 }
 
 .form-check .form-check-input.form-check-primary:not(:checked) {

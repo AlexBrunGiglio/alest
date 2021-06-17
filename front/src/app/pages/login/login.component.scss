@@ -1,9 +1,11 @@
 app-login {
-    height: 100vh;
-    overflow-x: hidden;
+    .login {
+        height: 100vh;
+        overflow-x: hidden !important;
+    }
     .auth-right {
         height: 100%;
-        background: linear-gradient(90deg, #2d499d, #3f5491);
+        background: linear-gradient(90deg, #4778ff, #2553cf);
     }
     .auth-left {
         padding: 5rem 8rem;
@@ -12,12 +14,12 @@ app-login {
             margin-bottom: 1rem;
         }
         .auth-subtitle {
-            font-size: 1.7rem;
-            line-height: 2.5rem;
+            font-size: 1.2rem;
+            line-height: 1.7rem;
             color: #a8aebb;
         }
         .auth-logo {
-            margin-bottom: 7rem;
+            margin-bottom: 2rem;
             img {
                 height: 2rem;
             }
@@ -25,5 +27,8 @@ app-login {
         @media screen and (max-width: 767px) {
             padding: 5rem;
         }
+    }
+    .sub-infos {
+        font-size: 16px;
     }
 }
