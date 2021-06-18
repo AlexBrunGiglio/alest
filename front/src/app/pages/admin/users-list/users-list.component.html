@@ -1,1 +1,53 @@
-<p>users-list works!</p>
+<app-drawer-admin-container>
+    <div class="container-fluid">
+        <div class="header-wrapper">
+            <div class="d-flex justify-between align-baseline">
+                <h1>Liste des utilisateurs</h1>
+                <button mat-flat-button color="primary">Nouveau</button>
+            </div>
+            <hr>
+            <div class="filter-wrapper d-flex ">
+                <mat-form-field appearance="outline">
+                    <mat-label>Recherche</mat-label>
+                    <input matInput placeholder="Identifiant">
+                    <mat-icon matPrefix>account_circle</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Select</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            Valeur 1
+                        </mat-option>
+                    </mat-select>
+                    <mat-icon matPrefix>account_circle</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="list-wrapper">
+            <div class="item-wrapper">
+                <div class="picture-data">
+                    <div class="avatar avatar-xl bg-warning me-3">
+                        <span class="avatar-content">AS</span>
+                    </div>
+                    <div>
+                        <p>BRUN GIGLIO <br>Alexandre</p>
+                    </div>
+                </div>
+                <div class="vertical-separator"></div>
+                <div class="data">
+                    <mat-icon>
+                        mail_outline
+                    </mat-icon>
+                    <p>alexbrun2a@gmail.com</p>
+                </div>
+                <div class="vertical-separator"></div>
+                <div class="data">
+                    <mat-icon>
+                        manage_accounts
+                    </mat-icon>
+                    <p>Administrateur</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-drawer-admin-container>
