@@ -21,6 +21,9 @@ import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
+import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
+import { UnauthorizedComponent } from './pages/errors/unauthorized/unauthorized.component';
+import { InternalServerComponent } from './pages/errors/internal-server/internal-server.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-pas
     EditUsersComponent,
     LoginComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    NotFoundComponent,
+    UnauthorizedComponent,
+    InternalServerComponent
   ],
   imports: [
     BrowserModule,
