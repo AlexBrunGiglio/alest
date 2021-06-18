@@ -23,11 +23,6 @@ $front-theme: mat-light-theme( ( color: ( primary: $front-primary, accent: $fron
 
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body {
-    height: 100%;
-}
-
 body {
     margin: 0;
     font-family: "Lato", sans-serif !important;
@@ -36,11 +31,6 @@ body {
 html,
 body {
     height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 a {
@@ -246,321 +236,71 @@ a {
     margin-bottom: 0.5rem;
 }
 
-.form-group {
-    margin-bottom: 0.7rem;
-}
-
-.form-group label {
-    color: rgba(35, 28, 99, 0.7);
-    font-weight: 600;
-}
-
-.form-group small {
-    font-size: 0.7rem;
-}
-
-.form-group.with-title {
+.avatar {
+    display: inline-flex;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
     position: relative;
-}
-
-.form-group.with-title label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 5px;
-    font-size: 0.6rem;
-    background-color: #e9ecef;
-    width: 100%;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.form-group.with-title .form-control,
-.form-group.with-title dataTable-input {
-    padding-top: 2rem;
-}
-
-.form-group.with-title .form-control:focus~label,
-.form-group.with-title dataTable-input:focus~label {
-    border-left: 1px solid #435ebe;
-    border-top: 1px solid #435ebe;
-    border-right: 1px solid #435ebe;
-}
-
-.form-group[class*="has-icon-"].has-icon-left .form-control {
-    padding-left: 2.5rem;
-}
-
-.form-group[class*="has-icon-"].has-icon-left .form-control-icon {
-    left: 0;
-}
-
-.form-group[class*="has-icon-"].has-icon-right .form-control {
-    padding-right: 2.5rem;
-}
-
-.form-group[class*="has-icon-"].has-icon-right .form-control-icon {
-    right: 0;
-}
-
-.form-group[class*="has-icon-"] .form-control:focus~.form-control-icon i,
-.form-group[class*="has-icon-"] .form-control:focus~.form-control-icon svg {
-    color: #5a8dee;
-}
-
-.form-group[class*="has-icon-"] .form-control.form-control-xl {
-    padding-left: 3rem;
-}
-
-.form-group[class*="has-icon-"] .form-control.form-control-xl~.form-control-icon i {
-    font-size: 1.6rem;
-}
-
-.form-group[class*="has-icon-"] .form-control.form-control-xl~.form-control-icon i:before {
-    color: #a6a8aa;
-}
-
-.form-group[class*="has-icon-"] .form-control-icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 0 0.6rem;
-}
-
-.form-group[class*="has-icon-"] .form-control-icon i,
-.form-group[class*="has-icon-"] .form-control-icon svg {
-    width: 1.2rem;
-    color: #6c757d;
-    font-size: 1.2rem;
-}
-
-.form-group[class*="has-icon-"] .form-control-icon i:before,
-.form-group[class*="has-icon-"] .form-control-icon svg:before {
-    vertical-align: sub;
-}
-
-.form-control.form-control-xl {
-    padding: 0.85rem 1rem;
-    font-size: 1.2rem;
-}
-
-.form-check .form-check-input[class*="bg-"] {
-    border: 0;
-}
-
-.form-check .form-check-input:focus {
-    box-shadow: none;
-}
-
-.form-check .form-check-input.form-check-primary {
-    background-color: #4778ff;
-    border-color: #4778ff;
-}
-
-.form-check .form-check-input.form-check-primary:not(:checked) {
-    background-color: transparent;
-    border: 1px solid #ced4da;
-}
-
-.form-check .form-check-input.form-check-primary.form-check-glow {
-    box-shadow: 0 0 5px #697ecb;
-}
-
-.form-check .form-check-input.form-check-primary.form-check-glow:not(:checked) {
-    box-shadow: none;
-}
-
-.form-check .form-check-input.form-check-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-}
-
-.form-check .form-check-input.form-check-secondary:not(:checked) {
-    background-color: transparent;
-    border: 1px solid #ced4da;
-}
-
-.form-check .form-check-input.form-check-secondary.form-check-glow {
-    box-shadow: 0 0 5px #868e96;
-}
-
-.form-check .form-check-input.form-check-secondary.form-check-glow:not(:checked) {
-    box-shadow: none;
-}
-
-.form-check .form-check-input.form-check-success {
-    background-color: #198754;
-    border-color: #198754;
-}
-
-.form-check .form-check-input.form-check-success:not(:checked) {
-    background-color: transparent;
-    border: 1px solid #ced4da;
-}
-
-.form-check .form-check-input.form-check-success.form-check-glow {
-    box-shadow: 0 0 5px #21b26f;
-}
-
-.form-check .form-check-input.form-check-success.form-check-glow:not(:checked) {
-    box-shadow: none;
-}
-
-.form-check .form-check-input.form-check-info {
-    background-color: #0dcaf0;
-    border-color: #0dcaf0;
-}
-
-.form-check .form-check-input.form-check-info:not(:checked) {
-    background-color: transparent;
-    border: 1px solid #ced4da;
-}
-
-.form-check .form-check-input.form-check-info.form-check-glow {
-    box-shadow: 0 0 5px #3cd5f4;
-}
-
-.form-check .form-check-input.form-check-info.form-check-glow:not(:checked) {
-    box-shadow: none;
-}
-
-.form-check .form-check-input.form-check-warning {
-    background-color: #ffc107;
-    border-color: #ffc107;
-}
-
-.form-check .form-check-input.form-check-warning:not(:checked) {
-    background-color: transparent;
-    border: 1px solid #ced4da;
-}
-
-.form-check .form-check-input.form-check-warning.form-check-glow {
-    box-shadow: 0 0 5px #ffce3a;
-}
-
-.form-check .form-check-input.form-check-warning.form-check-glow:not(:checked) {
-    box-shadow: none;
-}
-
-.form-check .form-check-input.form-check-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-}
-
-.form-check .form-check-input.form-check-danger:not(:checked) {
-    background-color: transparent;
-    border: 1px solid #ced4da;
-}
-
-.form-check .form-check-input.form-check-danger.form-check-glow {
-    box-shadow: 0 0 5px #e4606d;
-}
-
-.form-check .form-check-input.form-check-danger.form-check-glow:not(:checked) {
-    box-shadow: none;
-}
-
-.form-check .form-check-input.form-check-light {
-    background-color: #f8f9fa;
-    border-color: #f8f9fa;
-}
-
-.form-check .form-check-input.form-check-light:not(:checked) {
-    background-color: transparent;
-    border: 1px solid #ced4da;
-}
-
-.form-check .form-check-input.form-check-light.form-check-glow {
-    box-shadow: 0 0 5px #fff;
-}
-
-.form-check .form-check-input.form-check-light.form-check-glow:not(:checked) {
-    box-shadow: none;
-}
-
-.form-check .form-check-input.form-check-dark {
-    background-color: #212529;
-    border-color: #212529;
-}
-
-.form-check .form-check-input.form-check-dark:not(:checked) {
-    background-color: transparent;
-    border: 1px solid #ced4da;
-}
-
-.form-check .form-check-input.form-check-dark.form-check-glow {
-    box-shadow: 0 0 5px #383f45;
-}
-
-.form-check .form-check-input.form-check-dark.form-check-glow:not(:checked) {
-    box-shadow: none;
-}
-
-.form-check.form-check-sm .form-check-input {
-    width: 0.9rem;
-    height: 0.9rem;
-    margin-top: 0.3em;
-}
-
-.form-check.form-check-sm label {
-    font-size: 0.7rem;
-}
-
-.form-check.form-check-lg .form-check-input {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-top: 0.3em;
-}
-
-.form-check.form-check-lg label {
-    font-size: 1rem;
-}
-
-.form-check.form-check-primary .form-check-input {
-    background-color: #435ebe;
-    border-color: #435ebe;
-}
-
-.form-check.form-check-secondary .form-check-input {
-    background-color: #6c757d;
-    border-color: #6c757d;
-}
-
-.form-check.form-check-success .form-check-input {
-    background-color: #198754;
-    border-color: #198754;
-}
-
-.form-check.form-check-info .form-check-input {
-    background-color: #0dcaf0;
-    border-color: #0dcaf0;
-}
-
-.form-check.form-check-warning .form-check-input {
-    background-color: #ffc107;
-    border-color: #ffc107;
-}
-
-.form-check.form-check-danger .form-check-input {
-    background-color: #dc3545;
-    border-color: #dc3545;
-}
-
-.form-check.form-check-light .form-check-input {
-    background-color: #f8f9fa;
-    border-color: #f8f9fa;
-}
-
-.form-check.form-check-dark .form-check-input {
-    background-color: #212529;
-    border-color: #212529;
-}
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    .avatar-content {
+        width: 32px;
+        height: 32px;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.875rem;
+        svg,
+        i {
+            color: #fff;
+            font-size: 1rem;
+            height: 1rem;
+        }
+    }
+    img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+    }
+    .avatar-status {
+        width: 0.7rem;
+        height: 0.7rem;
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        bottom: 0;
+        right: 0;
+    }
+    &.avatar-sm {
+        .avatar-content,
+        img {
+            width: 24px;
+            height: 24px;
+            font-size: 0.8rem;
+        }
+    }
+    &.avatar-md {
+        .avatar-content,
+        img {
+            width: 32px;
+            height: 32px;
+            font-size: 0.8rem;
+        }
+    }
+    &.avatar-lg {
+        .avatar-content,
+        img {
+            width: 48px;
+            height: 48px;
+            font-size: 1.2rem;
+        }
+    }
+    &.avatar-xl {
+        .avatar-content,
+        img {
+            width: 60px;
+            height: 60px;
+            font-size: 1.4rem;
+        }
+    }
 }
