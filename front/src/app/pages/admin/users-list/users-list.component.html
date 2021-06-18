@@ -19,7 +19,7 @@
                             Valeur 1
                         </mat-option>
                     </mat-select>
-                    <mat-icon matPrefix>account_circle</mat-icon>
+                    <mat-icon matPrefix>manage_accounts</mat-icon>
                 </mat-form-field>
             </div>
         </div>
@@ -27,7 +27,7 @@
             <div class="item-wrapper">
                 <div class="picture-data">
                     <div class="avatar avatar-xl bg-warning me-3">
-                        <span class="avatar-content">AS</span>
+                        <span class="avatar-content">ABG</span>
                     </div>
                     <div>
                         <p>BRUN GIGLIO <br>Alexandre</p>
@@ -49,5 +49,6 @@
                 </div>
             </div>
         </div>
+        <mat-paginator class="mat-paginator-sticky" length="filteredCount" [pageSize]="20" [pageSizeOptions]="[10,20, 100]"></mat-paginator>
     </div>
 </app-drawer-admin-container>

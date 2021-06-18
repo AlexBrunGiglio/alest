@@ -24,7 +24,7 @@ import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-pas
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 import { UnauthorizedComponent } from './pages/errors/unauthorized/unauthorized.component';
 import { InternalServerComponent } from './pages/errors/internal-server/internal-server.component';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +53,7 @@ import { InternalServerComponent } from './pages/errors/internal-server/internal
     RouterModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

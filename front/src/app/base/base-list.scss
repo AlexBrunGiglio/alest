@@ -4,6 +4,7 @@
     min-height: 70px;
     padding: 15px;
     border-radius: 10px;
+    box-shadow: 0 0 0.5rem rgb(0 0 0 / 15%);
 }
 
 .d-flex {
@@ -72,5 +73,8 @@
         border: 1px solid $main-blue;
         transform: scale(1.02);
         cursor: pointer;
+    }
+    .mat-paginator mat-paginator {
+        border-radius: 15px;
     }
 }
