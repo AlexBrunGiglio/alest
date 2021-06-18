@@ -6,10 +6,18 @@ export enum RolesList {
 }
 
 export enum AppTypes {
-    Gender = "Gender"
+    Gender = "Gender",
+    PresenceStatut = "PresenceStatut"
 }
 
 export enum Gender {
     Male = "Gender_Male",
     Female = "Gender_Female",
+}
+
+export enum PresenceStatut {
+    Online = 'PresenceStatut_Online',
+    Missing = 'PresenceStatut_Missing',
+    Busy = 'PresenceStatut_Busy',
+    Offline = 'PresenceStatut_Offline,'
 }
