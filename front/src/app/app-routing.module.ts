@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EditUsersComponent } from './pages/admin/edit-users/edit-users.component';
 import { HomeComponent } from './pages/admin/home/home.component';
+import { UsersListComponent } from './pages/admin/users-list/users-list.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
@@ -30,6 +32,14 @@ const routes: Routes = [
   {
     path: RoutesList.ForgotPassword,
     component: ForgotPasswordComponent,
+  },
+  {
+    path: RoutesList.AdminUsers,
+    component: UsersListComponent,
+  },
+  {
+    path: RoutesList.AdminUsers + '/:id',
+    component: EditUsersComponent,
   },
   {
     path: RoutesList.Unauthorized,
