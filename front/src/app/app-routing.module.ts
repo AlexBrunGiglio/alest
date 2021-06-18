@@ -4,6 +4,9 @@ import { HomeComponent } from './pages/admin/home/home.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { InternalServerComponent } from './pages/errors/internal-server/internal-server.component';
+import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
+import { UnauthorizedComponent } from './pages/errors/unauthorized/unauthorized.component';
 import { RoutesList } from './routes/routes';
 
 const routes: Routes = [
@@ -27,6 +30,22 @@ const routes: Routes = [
   {
     path: RoutesList.ForgotPassword,
     component: ForgotPasswordComponent,
+  },
+  {
+    path: RoutesList.Unauthorized,
+    component: UnauthorizedComponent,
+  },
+  {
+    path: RoutesList.InternalError,
+    component: InternalServerComponent,
+  },
+  {
+    path: RoutesList.NotFound,
+    component: NotFoundComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   }
 ]
 
