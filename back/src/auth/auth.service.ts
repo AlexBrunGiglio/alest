@@ -1,11 +1,18 @@
 import { Injectable } from "@nestjs/common";
-import { AppErrorWithMessage } from "../base/app-error";
+import { JwtService } from "@nestjs/jwt";
+import { AppError, AppErrorWithMessage } from "../base/app-error";
+import { GenericResponse } from "../base/generic-response";
+import { MainHelpers } from "../base/main-helper";
+import { UserDto } from "../modules/users/user-dto";
 import { UsersService } from "../modules/users/users.service";
+import { LoginViewModel, RegisterRequest } from "./auth-request";
+import { AuthToolsService } from "./tools.service";
 
 @Injectable()
 export class AuthService {
     constructor(
         private userService: UsersService,
+        public readonly jwtService: JwtService,
     ) {
 
     }
@@ -21,5 +28,50 @@ export class AuthService {
             }
             return null;
         }
+    }
+
+    async register(request: RegisterRequest): Promise<GenericResponse> {
+        let response: GenericResponse = new GenericResponse();
+        try {
+            if (!request.mail || !request.password)
+                throw new AppErrorWithMessage('Impossible de créer un compte sans adresse e-mail ou sans mot de passe.');
+
+            const userResponse = await this.userService.findOne({ where: { mail: request.mail, } });
+            if (!userResponse.success)
+                throw new AppError(userResponse.error);
+            if (userResponse.user)
+                throw new AppErrorWithMessage('Un compte mail existe déjà avec cette adresse e-mail !');
+
+            const user = new UserDto();
+            user.mail = request.mail;
+            user.username = request.username;
+            user.password = request.password;
+            response = await this.userService.createOrUpdate(user);
+        }
+        catch (err) {
+            response.handleError(err);
+        }
+        return response;
+    }
+
+    async login(loginViewModel: LoginViewModel): Promise<GenericResponse> {
+        const response = new GenericResponse();
+        try {
+            if (!loginViewModel.password || !loginViewModel.username)
+                throw AppError.getBadRequestError();
+            const findUserResponse = await this.userService.findOne({ where: { username: loginViewModel.username, password: loginViewModel.password } }, true);
+            if (!findUserResponse.success)
+                throw new AppError(findUserResponse.error);
+            if (!findUserResponse.user)
+                throw new AppErrorWithMessage('Utilisateur ou mot de passe incorrect !', 403);
+            if (!await MainHelpers.comparePasswords(loginViewModel.password, findUserResponse.user.password))
+                throw new AppErrorWithMessage('Utilisateur ou mot de passe incorrect !', 403);
+            response.token = AuthToolsService.createUserToken(this.jwtService, findUserResponse.user);
+            response.success = true;
+        }
+        catch (err) {
+            response.handleError(err);
+        }
+        return response;
     }
 }
