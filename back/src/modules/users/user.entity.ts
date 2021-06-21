@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany } from 'typeorm';
 import { UserDto } from './user-dto';
+import { UserRole } from './users-roles/user-role.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -23,6 +24,8 @@ export class User {
     phone?: string;
     @Column('text', { name: 'presentation', nullable: true })
     presentation?: string;
+    @ManyToMany(() => UserRole, (userRole) => userRole.users, { cascade: true })
+    roles: UserRole[];
 
     public toDto(): UserDto {
         return {
@@ -36,6 +39,7 @@ export class User {
             password: this.password,
             phone: this.phone,
             presentation: this.presentation,
+            roles: this.roles ? this.roles.map(x => x.toDto()) : [],
         }
     }
 
@@ -48,6 +52,14 @@ export class User {
         this.password = dto.password;
         this.phone = dto.phone;
         this.presentation = dto.presentation;
+
+        if (dto.roles) {
+            this.roles = dto.roles.map<UserRole>(xDto => {
+                const userRole = new UserRole();
+                userRole.fromDto(xDto);
+                return userRole;
+            });
+        }
 
         if (!this.id)
             this.id = undefined;
