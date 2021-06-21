@@ -1,3 +1,5 @@
+import { compare } from 'bcrypt';
+
 export class MainHelpers {
     public static generateUUID() { // Public Domain/MIT
         let d = new Date().getTime();//Timestamp
@@ -13,5 +15,10 @@ export class MainHelpers {
             }
             return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
         });
+    }
+
+    public static async comparePasswords(clearPassword: string, hashedPassword: string): Promise<boolean> {
+        const result = await compare(clearPassword, hashedPassword);
+        return result;
     }
 }
