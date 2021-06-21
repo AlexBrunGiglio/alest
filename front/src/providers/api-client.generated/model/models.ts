@@ -8,3 +8,4 @@ export * from './getUserResponse';
 export * from './getUsersResponse';
 export * from './multipleAppValuesRequest';
 export * from './userDto';
+export * from './userRoleDto';

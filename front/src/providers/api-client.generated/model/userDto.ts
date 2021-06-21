@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { UserRoleDto } from './userRoleDto';
 
 
 export interface UserDto { 
@@ -22,5 +23,7 @@ export interface UserDto {
     presentation?: string;
     creationDate?: Date;
     modifDate?: Date;
+    roles?: Array<UserRoleDto>;
+    rolesString?: Array<string>;
 }
 

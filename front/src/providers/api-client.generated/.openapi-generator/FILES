@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 api.module.ts
 api/api.ts
@@ -21,4 +20,5 @@ model/getUsersResponse.ts
 model/models.ts
 model/multipleAppValuesRequest.ts
 model/userDto.ts
+model/userRoleDto.ts
 variables.ts
