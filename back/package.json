@@ -29,6 +29,7 @@
         "@nestjs/platform-express": "^7.0.0",
         "@nestjs/swagger": "^4.8.0",
         "@nestjs/typeorm": "^7.1.5",
+        "bcrypt": "^5.0.1",
         "concurrently": "^6.2.0",
         "linqts": "^1.14.4",
         "mysql2": "^2.2.5",
