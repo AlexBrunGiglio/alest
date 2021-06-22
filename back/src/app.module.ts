@@ -1,9 +1,14 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { AppController } from './app.controller';
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
 import { ReferentialController } from './base/controllers/referential.controller';
 import { ReferentialService } from './base/services/referential.service';
+import { JwtSecretKey } from './environment/constant';
 import { Environment } from './environment/environment';
 import { AppType } from './modules/app-values/app-type.entity';
 import { AppValue } from './modules/app-values/app-value.entity';
@@ -28,15 +33,24 @@ import { UsersModule } from './modules/users/users.module';
       AppValue,
       AppType,
     ]),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.register({
+      secret: JwtSecretKey,
+      signOptions: {
+        expiresIn: '3650d',
+      },
+    }),
     UsersModule,
     UserRoleModule,
   ],
   controllers: [
     AppController,
-    ReferentialController
+    ReferentialController,
+    AuthController
   ],
   providers: [
     ReferentialService,
+    AuthService,
   ]
 })
 export class AppModule {

@@ -1,0 +1,1 @@
+export const JwtSecretKey = 'https://jwt.io/#debugger-io?token=eyJhbGciOiJIUzI1NiJ9.eyJmaXJzdG5hbWUiOiJzdHJpbmciLCJtYWlsIjoic3RyaW5nIiwicm9sZXMiOiJzdHJpbmdbXSIsImlkIjoic3RyaW5nIiwidXNlcm5hbWUiOiJzdHJpbmciLCJsYXN0bmFtZSI6InN0cmluZyJ9.rS9zm3xBH82pa8HjDUsiusC9qaZu_EJznWJWMFPH1dQ';

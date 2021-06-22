@@ -6,7 +6,7 @@ import { MainHelpers } from "../base/main-helper";
 import { UserDto } from "../modules/users/user-dto";
 import { UsersService } from "../modules/users/users.service";
 import { LoginViewModel, RegisterRequest } from "./auth-request";
-import { AuthToolsService } from "./tools.service";
+import { AuthToolsService } from "./services/tools.service";
 
 @Injectable()
 export class AuthService {
