@@ -2,6 +2,7 @@
 README.md
 api.module.ts
 api/api.ts
+api/auth.service.ts
 api/default.service.ts
 api/referential.service.ts
 api/users.service.ts
@@ -20,8 +21,10 @@ model/getUserResponse.ts
 model/getUserRoleResponse.ts
 model/getUserRolesResponse.ts
 model/getUsersResponse.ts
+model/loginViewModel.ts
 model/models.ts
 model/multipleAppValuesRequest.ts
+model/registerRequest.ts
 model/userDto.ts
 model/userRoleDto.ts
 variables.ts
