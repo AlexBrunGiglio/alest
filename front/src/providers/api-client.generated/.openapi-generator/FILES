@@ -5,6 +5,7 @@ api/api.ts
 api/default.service.ts
 api/referential.service.ts
 api/users.service.ts
+api/usersRoles.service.ts
 configuration.ts
 encoder.ts
 git_push.sh
@@ -16,6 +17,8 @@ model/getAppTypeResponse.ts
 model/getAppTypesResponse.ts
 model/getAppValueResponse.ts
 model/getUserResponse.ts
+model/getUserRoleResponse.ts
+model/getUserRolesResponse.ts
 model/getUsersResponse.ts
 model/models.ts
 model/multipleAppValuesRequest.ts

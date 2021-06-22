@@ -9,12 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { UserRoleDto } from './userRoleDto';
 
 
-export interface UserRoleDto { 
-    id?: string;
-    role: string;
-    label?: string;
-    disabled?: boolean;
+export interface GetUserRoleResponse { 
+    success: boolean;
+    message?: string;
+    error?: object;
+    statusCode?: number;
+    errorGuid?: string;
+    token?: string;
+    userRole: UserRoleDto;
 }
 

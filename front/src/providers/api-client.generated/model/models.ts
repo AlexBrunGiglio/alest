@@ -5,6 +5,8 @@ export * from './getAppTypeResponse';
 export * from './getAppTypesResponse';
 export * from './getAppValueResponse';
 export * from './getUserResponse';
+export * from './getUserRoleResponse';
+export * from './getUserRolesResponse';
 export * from './getUsersResponse';
 export * from './multipleAppValuesRequest';
 export * from './userDto';

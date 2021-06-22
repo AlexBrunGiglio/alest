@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { DefaultService } from './api/default.service';
 import { ReferentialService } from './api/referential.service';
 import { UsersService } from './api/users.service';
+import { UsersRolesService } from './api/usersRoles.service';
 
 @NgModule({
   imports:      [],
