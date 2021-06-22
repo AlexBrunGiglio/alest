@@ -7,6 +7,7 @@ import { ReferentialService } from './base/services/referential.service';
 import { Environment } from './environment/environment';
 import { AppType } from './modules/app-values/app-type.entity';
 import { AppValue } from './modules/app-values/app-value.entity';
+import { UserRoleModule } from './modules/users-roles/users-roles.module';
 import { UsersModule } from './modules/users/users.module';
 
 @Module({
@@ -27,7 +28,8 @@ import { UsersModule } from './modules/users/users.module';
       AppValue,
       AppType,
     ]),
-    UsersModule
+    UsersModule,
+    UserRoleModule,
   ],
   controllers: [
     AppController,
