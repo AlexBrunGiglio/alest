@@ -31,6 +31,7 @@
         "@nestjs/typeorm": "^7.1.5",
         "bcrypt": "^5.0.1",
         "concurrently": "^6.2.0",
+        "jsonwebtoken": "^8.5.1",
         "linqts": "^1.14.4",
         "mysql2": "^2.2.5",
         "open-cli": "^7.0.0",
