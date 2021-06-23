@@ -33,24 +33,15 @@ import { UsersModule } from './modules/users/users.module';
       AppValue,
       AppType,
     ]),
-    PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register({
-      secret: JwtSecretKey,
-      signOptions: {
-        expiresIn: '3650d',
-      },
-    }),
     UsersModule,
     UserRoleModule,
   ],
   controllers: [
     AppController,
     ReferentialController,
-    AuthController
   ],
   providers: [
     ReferentialService,
-    AuthService,
   ]
 })
 export class AppModule {
