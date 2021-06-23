@@ -1,4 +1,5 @@
 import { compare } from 'bcrypt';
+import { performance } from 'perf_hooks';
 
 export class MainHelpers {
     public static generateUUID() { // Public Domain/MIT

@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { AppController } from './app.controller';
 import { AuthController } from './auth/auth.controller';
+import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { ReferentialController } from './base/controllers/referential.controller';
 import { ReferentialService } from './base/services/referential.service';
@@ -35,6 +36,7 @@ import { UsersModule } from './modules/users/users.module';
     ]),
     UsersModule,
     UserRoleModule,
+    AuthModule,
   ],
   controllers: [
     AppController,
