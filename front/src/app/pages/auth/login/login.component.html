@@ -10,23 +10,17 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>Identifiant</mat-label>
-                    <input matInput placeholder="Identifiant">
+                    <input matInput placeholder="Identifiant" required [(ngModel)]="loginViewModel.username">
                     <mat-icon matPrefix>account_circle</mat-icon>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Mot de passe</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'">
+                    <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="loginViewModel.password" required>
                     <button mat-icon-button matPrefix (click)="hide = !hide" [attr.aria-label]="'Afficher le mot de passe'" [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                 </mat-form-field>
-                <!-- <div class="form-check form-check-lg d-flex align-items-end">
-                        <input class="form-check-input me-2" type="checkbox" value="" class="flexCheckDefault">
-                        <label class="form-check-label text-gray-600" for="flexCheckDefault">
-                            Keep me logged in
-                        </label>
-                    </div> -->
-                <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Connexion</button>
+                <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" (click)="login()">Connexion</button>
                 <div class="text-center mt-5 text-lg fs-4">
                     <p class="sub-infos">Pas de compte ? <a class="font-bold" [routerLink]="'/' + RoutesList.Register">Inscrivez vous</a>.</p>
                     <p class="sub-infos"><a class="font-bold" [routerLink]="'/' + RoutesList.ForgotPassword">Mot de passe oublié ?</a></p>

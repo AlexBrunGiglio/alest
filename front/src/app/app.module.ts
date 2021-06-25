@@ -24,6 +24,7 @@ import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-pas
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 import { UnauthorizedComponent } from './pages/errors/unauthorized/unauthorized.component';
 import { InternalServerComponent } from './pages/errors/internal-server/internal-server.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { InternalServerComponent } from './pages/errors/internal-server/internal
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AppRoutingModule,
