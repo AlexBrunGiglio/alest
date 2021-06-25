@@ -21,7 +21,7 @@ export class UserRoleService extends ApplicationBaseModelService<UserRole, UserR
             getOneRelations: ['rights'],
             repository: this.userRolesRepository,
             entity: UserRole,
-            archiveField: 'enabled',
+            archiveField: 'disabled',
             archiveFieldValue: false,
         };
     }

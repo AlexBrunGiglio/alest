@@ -38,8 +38,8 @@ export class UsersRolesController extends BaseController {
     @HttpCode(200)
     async getUserRoles(@Query() request: GetUserRolesRequest): Promise<GetUserRolesResponse> {
         const findOptions = BaseSearchRequest.getDefaultFindOptions<UserRole>(request);
-        if (request.includeDisabled !== 'true') {
-            findOptions.where = { enabled: true };
+        if (request.includeDisabled === 'true') {
+            findOptions.where = { disabled: true };
         }
         return await this.userRoleService.findAll(findOptions);
     }
