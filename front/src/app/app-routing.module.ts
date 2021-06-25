@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { RolesList } from '../../../shared/shared-constant';
 import { EditUsersComponent } from './pages/admin/edit-users/edit-users.component';
 import { HomeComponent } from './pages/admin/home/home.component';
 import { UsersListComponent } from './pages/admin/users-list/users-list.component';
@@ -9,6 +10,8 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { InternalServerComponent } from './pages/errors/internal-server/internal-server.component';
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 import { UnauthorizedComponent } from './pages/errors/unauthorized/unauthorized.component';
+import { AuthGuard } from './routes/guards/auth-guard';
+import { RoleGuard } from './routes/guards/role-guard';
 import { RoutesList } from './routes/routes';
 
 const routes: Routes = [
@@ -20,6 +23,7 @@ const routes: Routes = [
   {
     path: RoutesList.AdminHome,
     component: HomeComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: RoutesList.Login,
@@ -36,10 +40,14 @@ const routes: Routes = [
   {
     path: RoutesList.AdminUsers,
     component: UsersListComponent,
+    canActivate: [RoleGuard],
+    data: { roles: [RolesList.Admin] },
   },
   {
     path: RoutesList.AdminUsers + '/:id',
     component: EditUsersComponent,
+    canActivate: [RoleGuard],
+    data: { roles: [RolesList.Admin] },
   },
   {
     path: RoutesList.Unauthorized,

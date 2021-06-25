@@ -28,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { BASE_PATH } from '../providers/api-client.generated';
 import { SpinnerModule } from './components/spinner/spinner.module';
+import { AuthGuard } from './routes/guards/auth-guard';
+import { RoleGuard } from './routes/guards/role-guard';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { SpinnerModule } from './components/spinner/spinner.module';
     SpinnerModule,
   ],
   providers: [
+    AuthGuard,
+    RoleGuard,
     { provide: BASE_PATH, useValue: environment.apiBaseUrl },
   ],
   bootstrap: [AppComponent]
