@@ -30,9 +30,13 @@ export class UsersService extends ApplicationBaseModelService<User, UserDto, Get
             if (!userEntity) {
                 userEntity = new User();
             }
+            userEntity.fromDto(user);
             if (user.password)
                 userEntity.password = await MainHelpers.hashPassword(user.password);
 
+
+            if (!user.username)
+                userEntity.username = user.firstname + '-' + user.lastname;
             userEntity = await this.repository.save(userEntity);
             const getUserResponse = await this.findOne({ where: { id: userEntity.id } });
             if (getUserResponse.success && getUserResponse.user)
