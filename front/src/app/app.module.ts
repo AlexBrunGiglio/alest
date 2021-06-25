@@ -25,6 +25,8 @@ import { UnauthorizedComponent } from './pages/errors/unauthorized/unauthorized.
 import { InternalServerComponent } from './pages/errors/internal-server/internal-server.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { BASE_PATH } from '../providers/api-client.generated';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatPaginatorModule,
   ],
-  providers: [],
+  providers: [
+    { provide: BASE_PATH, useValue: environment.apiBaseUrl },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
