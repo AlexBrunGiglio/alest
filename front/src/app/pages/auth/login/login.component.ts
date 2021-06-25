@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService, LoginViewModel, UsersService } from '../../../../providers/api-client.generated';
 import { BaseComponent } from '../../../base/base.component';
 
@@ -15,6 +16,7 @@ export class LoginComponent extends BaseComponent {
   errorMsg: string;
   constructor(
     private authService: AuthService,
+    private router: Router,
   ) {
     super();
     this.init()
@@ -33,7 +35,7 @@ export class LoginComponent extends BaseComponent {
       this.errorMsg = loginResponse.message;
       console.log("🚀 ~ LoginComponent ~ login ~ loginResponse.messag", loginResponse.message);
     } else
-      console.log("connexion réussi");
+      this.router.navigateByUrl('/');
     this.loading = false;
   }
 }
