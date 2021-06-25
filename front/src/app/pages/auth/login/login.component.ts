@@ -34,8 +34,10 @@ export class LoginComponent extends BaseComponent {
     if (!loginResponse.success) {
       this.errorMsg = loginResponse.message;
       console.log("🚀 ~ LoginComponent ~ login ~ loginResponse.messag", loginResponse.message);
-    } else
-      this.router.navigateByUrl('/');
+    } else {
+      localStorage.setItem('token', loginResponse.token);
+      this.router.navigateByUrl('/' + this.RoutesList.AdminHome);
+    }
     this.loading = false;
   }
 }
