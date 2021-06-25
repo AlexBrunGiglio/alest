@@ -12,18 +12,14 @@
 import { UserRoleDto } from './userRoleDto';
 
 
-export interface UserDto { 
-    id?: string;
-    username: string;
-    lastname?: string;
-    firstname?: string;
-    password?: string;
-    mail?: string;
-    phone?: string;
-    presentation?: string;
-    creationDate?: Date;
-    modifDate?: Date;
-    roles?: Array<UserRoleDto>;
-    rolesString?: Array<string>;
+export interface GetUserRolesResponse { 
+    success: boolean;
+    message?: string;
+    error?: object;
+    statusCode?: number;
+    errorGuid?: string;
+    token?: string;
+    filteredResults: object;
+    userRoles: Array<UserRoleDto>;
 }
 

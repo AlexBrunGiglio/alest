@@ -1,8 +1,6 @@
 export enum RolesList {
     Admin = 'admin',
-    AdminTech = 'admin_tech',
-    Consultant = 'consultant',
-    Candidate = 'candidate',
+    Visitor = 'visitor',
 }
 
 export enum AppTypes {

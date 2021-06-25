@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +24,8 @@ import { NotFoundComponent } from './pages/errors/not-found/not-found.component'
 import { UnauthorizedComponent } from './pages/errors/unauthorized/unauthorized.component';
 import { InternalServerComponent } from './pages/errors/internal-server/internal-server.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AppRoutingModule,

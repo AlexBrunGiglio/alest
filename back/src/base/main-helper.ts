@@ -1,3 +1,6 @@
+import { compare } from 'bcrypt';
+import { performance } from 'perf_hooks';
+import { genSalt, hash } from 'bcryptjs';
 export class MainHelpers {
     public static generateUUID() { // Public Domain/MIT
         let d = new Date().getTime();//Timestamp
@@ -13,5 +16,15 @@ export class MainHelpers {
             }
             return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
         });
+    }
+
+    public static async comparePasswords(clearPassword: string, hashedPassword: string): Promise<boolean> {
+        const result = await compare(clearPassword, hashedPassword);
+        return result;
+    }
+
+    public static async hashPassword(password: string): Promise<string> {
+        const salt = await genSalt(10);
+        return await hash(password, salt);
     }
 }

@@ -11,9 +11,8 @@ async function bootstrap() {
     .setTitle('API template')
     .setDescription('API template description')
     .setVersion('1.0')
-    .addTag('doc')
     .build();
-
+  app.enableCors({ origin: ['http://localhost:4200'], credentials: true })
   const document = SwaggerModule.createDocument(app, config);
   app.use('/api/docs/swagger.json', (req: any, res: any) => {
     res.send(document);

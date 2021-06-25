@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { GenericResponse } from "../../base/generic-response";
 import { BaseSearchResponse } from "../../base/search-response";
+import { UserRoleDto } from "../users-roles/user-role-dto";
 
 export class UserDto {
     @ApiPropertyOptional()
@@ -23,6 +24,10 @@ export class UserDto {
     public creationDate?: Date;
     @ApiPropertyOptional({ type: String, format: 'date-time' })
     public modifDate?: Date;
+    @ApiPropertyOptional({ type: () => UserRoleDto, isArray: true })
+    roles?: UserRoleDto[];
+    @ApiPropertyOptional()
+    rolesString?: string[];
 }
 
 export class GetUserResponse extends GenericResponse {

@@ -9,7 +9,7 @@ export abstract class BaseComponent implements OnDestroy {
     public RolesList = RolesList;
     public hasPendingModifications = false;
     public environment = environment;
-
+    public loading = false;
     constructor() {
 
     }
