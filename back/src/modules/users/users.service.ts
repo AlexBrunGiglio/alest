@@ -19,7 +19,13 @@ export class UsersService extends ApplicationBaseModelService<User, UserDto, Get
             getManyResponseField: 'users',
             getOneResponseField: 'user',
             repository: this.repository,
-            entity: User
+            entity: User,
+            getManyRelations: ['roles'],
+            getOneRelations: ['roles'],
+            getManyRelationsLinq: [{ include: x => x.roles }],
+            getOneRelationsLinq: [{ include: x => x.roles }],
+            archiveField: 'disabled',
+            archiveFieldValue: true,
         };
     }
 

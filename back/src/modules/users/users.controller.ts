@@ -60,4 +60,16 @@ export class UsersController extends BaseController {
     async deleteUsers(@Query('userIds') userIds: string): Promise<GenericResponse> {
         return await this.usersService.delete(userIds.split(','));
     }
+
+    @UseGuards(RolesGuard)
+    @Roles(RolesList.Admin)
+    @Post('archiveUsers')
+    @ApiBearerAuth()
+    @ApiOperation({ summary: 'Archive user', operationId: 'archiveUsers' })
+    @ApiResponse({ status: 200, description: 'Archive users from ID', type: GenericResponse })
+    @HttpCode(200)
+    async archiveUsers(@Query('userIds') userIds: string): Promise<GenericResponse> {
+        return await this.usersService.archive(userIds.split(','));
+    }
+
 }
