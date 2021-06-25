@@ -7,6 +7,7 @@ import { UsersService } from './users.service';
 import { RolesList } from '../../../../shared/shared-constant'
 import { AppErrorWithMessage } from '../../base/app-error';
 import { GenericResponse } from '../../base/generic-response';
+import { RolesGuard } from '../../auth/guards/roles.guard';
 @ApiTags('users')
 @Controller('users')
 export class UsersController extends BaseController {
@@ -15,7 +16,7 @@ export class UsersController extends BaseController {
     ) {
         super();
     }
-    @UseGuards()
+    @UseGuards(RolesGuard)
     @Roles(RolesList.Admin)
     @Get()
     @ApiBearerAuth()
@@ -26,8 +27,7 @@ export class UsersController extends BaseController {
         return await this.usersService.findAll();
     }
 
-    @UseGuards()
-    @Roles(RolesList.Admin)
+    @UseGuards(RolesGuard)
     @Get(':id')
     @ApiBearerAuth()
     @ApiOperation({ summary: 'Get user', operationId: 'getUser' })
@@ -37,7 +37,7 @@ export class UsersController extends BaseController {
         return await this.usersService.findOne({ where: { id: id } });
     }
 
-    @UseGuards()
+    @UseGuards(RolesGuard)
     @Roles(RolesList.Admin)
     @Post()
     @ApiBearerAuth()
@@ -50,7 +50,7 @@ export class UsersController extends BaseController {
         return await this.usersService.createOrUpdate(candidateResumeDto);
     }
 
-    @UseGuards()
+    @UseGuards(RolesGuard)
     @Roles(RolesList.Admin)
     @Delete()
     @ApiBearerAuth()

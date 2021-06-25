@@ -28,6 +28,8 @@ export class UserDto {
     roles?: UserRoleDto[];
     @ApiPropertyOptional()
     rolesString?: string[];
+    @ApiProperty()
+    disabled: boolean;
 }
 
 export class GetUserResponse extends GenericResponse {

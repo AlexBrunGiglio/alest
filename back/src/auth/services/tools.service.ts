@@ -1,8 +1,11 @@
-import { ExecutionContext, Injectable, Scope } from '@nestjs/common';
+import { ExecutionContext, Inject, Injectable, Optional, Scope } from '@nestjs/common';
+import { REQUEST } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from '../../../../shared/jwt-payload'
 import { ApplicationBaseService } from '../../base/base-service';
 import { UserDto } from '../../modules/users/user-dto';
+import { Request, Response } from 'express';
+
 
 export type JwtDecodeError = 'TokenExpiredError' | 'JsonWebTokenError' | 'NoTokenError' | 'NoRequestData';
 export interface DecodeTokenResponse {
@@ -48,5 +51,52 @@ export class AuthToolsService extends ApplicationBaseService {
         if (!response)
             return null;
         return response;
+    }
+
+    public static getJwtPayloadFromRequest(jwtService: JwtService, request: any, ignoreExpiration: boolean): DecodeTokenResponse {
+        if (!request || !request.headers || !request.headers.authorization)
+            return { error: 'NoTokenError' };
+        return AuthToolsService.getJwtPayloadFromAuthHeader(jwtService, request.headers.authorization, ignoreExpiration);
+    }
+
+    public static getJwtTokenFromAuthHeader(authorizationHeader: string): string {
+        if (authorizationHeader && authorizationHeader.indexOf('Bearer') !== -1) {
+            const tokenArray = authorizationHeader.split('Bearer ');
+            if (tokenArray.length > 1) {
+                return tokenArray[1];
+            }
+        }
+        return null;
+    }
+    public static getJwtPayloadFromAuthHeader(jwtService: JwtService, authorizationHeader: string, ignoreExpiration: boolean): DecodeTokenResponse {
+        const jwtToken = this.getJwtTokenFromAuthHeader(authorizationHeader);
+        if (jwtToken)
+            return AuthToolsService.decodeToken(jwtService, jwtToken, ignoreExpiration);
+        return { error: 'NoTokenError' };
+    }
+
+    public static decodeToken(jwtService: JwtService, encodedToken: string, ignoreExpiration: boolean): DecodeTokenResponse {
+        let decoded: JwtPayload = null;
+        let error: JwtDecodeError;
+        try {
+            decoded = jwtService.verify(encodedToken, { ignoreExpiration: ignoreExpiration });
+        }
+        catch (err) {
+            if (err?.name)
+                error = err.name;
+        }
+        return { payload: decoded, error: error };
+    }
+
+    constructor(
+        @Optional() @Inject(REQUEST) private readonly request: Request,
+        public readonly jwtService: JwtService,
+    ) {
+        super();
+    }
+    public getCurrentPayload(ignoreExpiration: boolean): JwtPayload {
+        if (this.request)
+            return AuthToolsService.getJwtPayloadFromRequest(this.jwtService, this.request, ignoreExpiration).payload;
+        return null;
     }
 }

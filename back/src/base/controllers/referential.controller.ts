@@ -1,6 +1,7 @@
 import { Body, Controller, Get, HttpCode, Param, Post, Query, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { RolesList } from "../../../../shared/shared-constant";
+import { RolesGuard } from "../../auth/guards/roles.guard";
 import { AppTypeDto, FindAppTypesRequest, GetAppTypeResponse, GetAppTypesResponse, GetTypeValuesRequest } from "../../modules/app-values/app-type-dto";
 import { AppValueDto, GetAppValueResponse, MultipleAppValuesRequest } from "../../modules/app-values/app-value-dto";
 import { BaseController } from "../base.controller";
@@ -17,7 +18,7 @@ export class ReferentialController extends BaseController {
         super();
     }
 
-    @UseGuards()
+    @UseGuards(RolesGuard)
     @ApiBearerAuth()
     @Get('getOneAppType/:id')
     @ApiOperation({ summary: 'Get App Type', operationId: 'getOneAppType' })
@@ -27,7 +28,7 @@ export class ReferentialController extends BaseController {
         return await this.referentialService.getOneAppType(id);
     }
 
-    @UseGuards()
+    @UseGuards(RolesGuard)
     @ApiBearerAuth()
     @Get('getTypeValues')
     @ApiOperation({ summary: 'Get values of a type', operationId: 'getTypeValues' })
@@ -37,7 +38,7 @@ export class ReferentialController extends BaseController {
         return await this.referentialService.getTypeValues(request);
     }
 
-    @UseGuards()
+    @UseGuards(RolesGuard)
     @ApiBearerAuth()
     @Get('getMultipleTypeValues')
     @ApiOperation({ summary: 'Get values of a type', operationId: 'getMultipleTypeValues' })
@@ -47,7 +48,7 @@ export class ReferentialController extends BaseController {
         return await this.referentialService.getMultipleTypeValues(request);
     }
 
-    @UseGuards()
+    @UseGuards(RolesGuard)
     @Roles(RolesList.Admin)
     @ApiBearerAuth()
     @Post('insertOrUpdateAppValue')
@@ -58,7 +59,7 @@ export class ReferentialController extends BaseController {
         return await this.referentialService.insertOrUpdateAppValue(appValueDto);
     }
 
-    @UseGuards()
+    @UseGuards(RolesGuard)
     @Roles(RolesList.Admin)
     @ApiBearerAuth()
     @Post('insertOrUpdateAppType')
@@ -69,7 +70,7 @@ export class ReferentialController extends BaseController {
         return await this.referentialService.insertOrUpdateAppType(appTypeDto, true, true);
     }
 
-    @UseGuards()
+    @UseGuards(RolesGuard)
     @Roles(RolesList.Admin)
     @ApiBearerAuth()
     @Post('removeAppValues')
@@ -87,7 +88,7 @@ export class ReferentialController extends BaseController {
         return response;
     }
 
-    @UseGuards()
+    @UseGuards(RolesGuard)
     @Roles(RolesList.Admin)
     @ApiBearerAuth()
     @Post('disableAppValues')

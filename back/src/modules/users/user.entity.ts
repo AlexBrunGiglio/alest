@@ -26,7 +26,8 @@ export class User {
     presentation?: string;
     @ManyToMany(() => UserRole, (userRole) => userRole.users, { cascade: true })
     public roles: UserRole[];
-
+    @Column('boolean', { name: 'disabled', nullable: false, default: 0 })
+    disabled: boolean;
     public toDto(): UserDto {
         return {
             id: this.id,
@@ -40,6 +41,7 @@ export class User {
             phone: this.phone,
             presentation: this.presentation,
             roles: this.roles ? this.roles.map(x => x.toDto()) : [],
+            disabled: this.disabled,
         }
     }
 
@@ -52,6 +54,7 @@ export class User {
         this.password = dto.password;
         this.phone = dto.phone;
         this.presentation = dto.presentation;
+        this.disabled = dto.disabled;
 
         if (dto.roles) {
             this.roles = dto.roles.map<UserRole>(xDto => {

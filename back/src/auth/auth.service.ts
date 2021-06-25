@@ -12,7 +12,7 @@ import { AuthToolsService } from "./services/tools.service";
 export class AuthService {
     constructor(
         private userService: UsersService,
-        public readonly jwtService: JwtService,
+        private readonly jwtService: JwtService,
     ) {
 
     }

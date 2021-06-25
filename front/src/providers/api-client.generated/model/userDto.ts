@@ -25,5 +25,6 @@ export interface UserDto {
     modifDate?: Date;
     roles?: Array<UserRoleDto>;
     rolesString?: Array<string>;
+    disabled: boolean;
 }
 
