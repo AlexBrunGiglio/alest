@@ -59,13 +59,19 @@ export class AuthService {
         try {
             if (!loginViewModel.password || !loginViewModel.username)
                 throw AppError.getBadRequestError();
-            const findUserResponse = await this.userService.findOne({ where: { username: loginViewModel.username, password: loginViewModel.password } }, true);
+            const findUserResponse = await this.userService.findOne({ where: { username: loginViewModel.username } }, true);
+            console.log("🚀 ~ AuthService ~ login ~ findUserResponse", findUserResponse);
             if (!findUserResponse.success)
                 throw new AppError(findUserResponse.error);
+
             if (!findUserResponse.user)
+                throw new AppErrorWithMessage('Utilisateur introuvable !', 403);
+
+            if (!await MainHelpers.comparePasswords(loginViewModel.password, findUserResponse.user.password)) {
+                console.log("🚀 ~ AuthService ~ login ~ findUserResponse.user.password", findUserResponse.user.password);
+                console.log("🚀 ~ AuthService ~ login ~ loginViewModel.password", loginViewModel.password);
                 throw new AppErrorWithMessage('Utilisateur ou mot de passe incorrect !', 403);
-            if (!await MainHelpers.comparePasswords(loginViewModel.password, findUserResponse.user.password))
-                throw new AppErrorWithMessage('Utilisateur ou mot de passe incorrect !', 403);
+            }
             response.token = AuthToolsService.createUserToken(this.jwtService, findUserResponse.user);
             response.success = true;
         }
