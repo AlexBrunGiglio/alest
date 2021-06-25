@@ -15,7 +15,6 @@ export class LoginComponent extends BaseComponent {
   errorMsg: string;
   constructor(
     private authService: AuthService,
-    private userService: UsersService,
   ) {
     super();
     this.init()
@@ -23,20 +22,18 @@ export class LoginComponent extends BaseComponent {
 
   async init() {
     this.loginViewModel = {} as any;
-    const userResponse = await this.userService.getAllUsers().toPromise();
-    console.log("🚀 ~ LoginComponent ~ init ~ userResponse", userResponse);
   }
 
   async login() {
     if (!this.loginViewModel.username || !this.loginViewModel.password)
       return;
-    // this.loading = true;
+    this.loading = true;
     const loginResponse = await this.authService.login(this.loginViewModel).toPromise();
     if (!loginResponse.success) {
       this.errorMsg = loginResponse.message;
       console.log("🚀 ~ LoginComponent ~ login ~ loginResponse.messag", loginResponse.message);
     } else
       console.log("connexion réussi");
-    // this.loading = false;
+    this.loading = false;
   }
 }

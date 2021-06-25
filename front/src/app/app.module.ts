@@ -27,6 +27,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { BASE_PATH } from '../providers/api-client.generated';
+import { SpinnerModule } from './components/spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { BASE_PATH } from '../providers/api-client.generated';
     ForgotPasswordComponent,
     NotFoundComponent,
     UnauthorizedComponent,
-    InternalServerComponent
+    InternalServerComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +59,7 @@ import { BASE_PATH } from '../providers/api-client.generated';
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatPaginatorModule,
+    SpinnerModule,
   ],
   providers: [
     { provide: BASE_PATH, useValue: environment.apiBaseUrl },
