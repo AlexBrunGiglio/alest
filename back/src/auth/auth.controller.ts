@@ -1,10 +1,9 @@
-import { Body, Controller, HttpCode, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, HttpCode, Post } from "@nestjs/common";
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { BaseController } from "../base/base.controller";
 import { GenericResponse } from "../base/generic-response";
 import { LoginViewModel, RegisterRequest } from "./auth-request";
 import { AuthService } from "./auth.service";
-import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 
 @Controller('auth')
 @ApiTags('auth')
@@ -25,7 +24,6 @@ export class AuthController extends BaseController {
     }
 
     @Post('register')
-    @UseGuards(JwtAuthGuard)
     @ApiOperation({ summary: 'register', operationId: 'register' })
     @ApiResponse({ status: 200, description: 'Generic Response', type: GenericResponse })
     @HttpCode(200)
