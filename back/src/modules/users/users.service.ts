@@ -41,6 +41,7 @@ export class UsersService extends ApplicationBaseModelService<User, UserDto, Get
             const getUserResponse = await this.findOne({ where: { id: userEntity.id } });
             if (getUserResponse.success && getUserResponse.user)
                 response.user = getUserResponse.user;
+            response.success = true;
         } catch (err) {
             response.handleError(err);
         }

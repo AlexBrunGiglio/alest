@@ -25,7 +25,7 @@ export class User {
     @Column('text', { name: 'presentation', nullable: true })
     presentation?: string;
     @ManyToMany(() => UserRole, (userRole) => userRole.users, { cascade: true })
-    roles: UserRole[];
+    public roles: UserRole[];
 
     public toDto(): UserDto {
         return {

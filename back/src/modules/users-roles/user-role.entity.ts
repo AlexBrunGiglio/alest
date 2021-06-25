@@ -13,7 +13,7 @@ export class UserRole {
     @ManyToMany(() => User, (user) => user.roles)
     @JoinTable({ name: 'user_roles' })
     users?: User[];
-    @Column('boolean', { name: 'disabled', nullable: true })
+    @Column('boolean', { name: 'disabled', nullable: false, default: false })
     disabled?: boolean;
 
     public toDto(): UserRoleDto {

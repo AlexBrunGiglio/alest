@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { AppTypes, Gender, PresenceStatut, RolesList } from "../../shared/shared-constant";
+import { AppErrorWithMessage } from "./base/app-error";
 import { ReferentialService } from "./base/services/referential.service";
 import { UserRoleDto } from "./modules/users-roles/user-role-dto";
 import { UserRoleService } from "./modules/users-roles/user-roles.service";
@@ -24,7 +25,7 @@ export class DatabaseService {
     }
 
     private async createDefaultUsers() {
-        await this.createUser('admin', 'admin', 'admin@local.com', [RolesList.Admin]);
+        await this.createUser('alex', 'dev', 'admin@local.com', [RolesList.Admin]);
     }
 
     private async createDefaultRoles() {
@@ -74,14 +75,18 @@ export class DatabaseService {
                 adminUser.username = username;
                 adminUser.password = password;
                 adminUser.mail = email;
+                adminUser.roles = [];
 
-                const userRoles: UserRoleDto[] = [];
+                const getUserRoleResponse = await this.userRoleService.findAll();
+                if (!getUserRoleResponse.success)
+                    throw new AppErrorWithMessage(getUserRoleResponse.message);
                 if (roles) {
-                    roles.forEach(role => {
-                        userRoles.push({ role: role, label: role, disabled: false });
-                    });
+                    for (const role of roles) {
+                        const roleToPush = getUserRoleResponse.userRoles.find(x => x.role === role)
+                        adminUser.roles.push(roleToPush);
+                    }
                 }
-                adminUser.roles = userRoles;
+
                 const createUserResponse = await this.userService.createOrUpdate(adminUser);
                 if (createUserResponse.success)
                     console.log('\x1b[34m', `L'utilisateur ${username} a été créé !`);
