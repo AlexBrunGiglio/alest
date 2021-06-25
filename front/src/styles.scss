@@ -305,3 +305,26 @@ a {
         }
     }
 }
+
+app-spinner {
+    svg {
+        height: 100px;
+        width: 100px;
+    }
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
