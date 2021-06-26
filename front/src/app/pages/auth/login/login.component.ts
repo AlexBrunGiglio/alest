@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, LoginViewModel, UsersService } from '../../../../providers/api-client.generated';
+import { AuthDataService } from '../../../../services/auth-data.service';
 import { BaseComponent } from '../../../base/base.component';
 
 @Component({
@@ -36,6 +37,8 @@ export class LoginComponent extends BaseComponent {
       console.log("🚀 ~ LoginComponent ~ login ~ loginResponse.messag", loginResponse.message);
     } else {
       localStorage.setItem('token', loginResponse.token);
+      const test = AuthDataService.currentAuthToken;
+      console.log("🚀 ~ LoginComponent ~ login ~ test", test);
       this.router.navigateByUrl('/' + this.RoutesList.AdminHome);
     }
     this.loading = false;
