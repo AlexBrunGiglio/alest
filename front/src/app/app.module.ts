@@ -26,10 +26,19 @@ import { InternalServerComponent } from './pages/errors/internal-server/internal
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { BASE_PATH } from '../providers/api-client.generated';
+import { ApiModule, BASE_PATH, Configuration, ConfigurationParameters } from '../providers/api-client.generated';
 import { SpinnerModule } from './components/spinner/spinner.module';
 import { AuthGuard } from './routes/guards/auth-guard';
 import { RoleGuard } from './routes/guards/role-guard';
+
+export function apiConfigFactory(): Configuration {
+  const params: ConfigurationParameters = {
+    // set configuration parameters here.
+    apiKeys: {},
+    withCredentials: true,
+  };
+  return new Configuration(params);
+}
 
 @NgModule({
   declarations: [
@@ -50,6 +59,7 @@ import { RoleGuard } from './routes/guards/role-guard';
     AppRoutingModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ApiModule.forRoot(apiConfigFactory),
     AdminDrawerModule,
     CommonModule,
     FormsModule,
