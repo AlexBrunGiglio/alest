@@ -24,12 +24,13 @@ import { NotFoundComponent } from './pages/errors/not-found/not-found.component'
 import { UnauthorizedComponent } from './pages/errors/unauthorized/unauthorized.component';
 import { InternalServerComponent } from './pages/errors/internal-server/internal-server.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { ApiModule, BASE_PATH, Configuration, ConfigurationParameters } from '../providers/api-client.generated';
 import { SpinnerModule } from './components/spinner/spinner.module';
 import { AuthGuard } from './routes/guards/auth-guard';
 import { RoleGuard } from './routes/guards/role-guard';
+import { HttpInterceptor } from '../providers/http-interceptor';
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -77,6 +78,7 @@ export function apiConfigFactory(): Configuration {
     AuthGuard,
     RoleGuard,
     { provide: BASE_PATH, useValue: environment.apiBaseUrl },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
