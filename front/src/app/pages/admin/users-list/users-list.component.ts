@@ -24,6 +24,7 @@ export class UsersListComponent extends BaseComponent implements OnInit {
     if (!getUsersResponse.success)
       return console.warn(getUsersResponse.message);
     this.users = getUsersResponse.users;
+    console.log("🚀 ~ UsersListComponent ~ init ~ getUsersResponse.users", getUsersResponse.users);
   }
 
 }
