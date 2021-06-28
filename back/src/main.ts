@@ -4,7 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, { cors: true });
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
@@ -13,7 +13,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth()
     .build();
-  // app.enableCors({ origin: ['http://localhost:4200'], credentials: true });
+  app.enableCors({ origin: ['http://localhost:4200'], credentials: true });
   const document = SwaggerModule.createDocument(app, config);
   app.use('/api/docs/swagger.json', (req: any, res: any) => {
     res.send(document);
