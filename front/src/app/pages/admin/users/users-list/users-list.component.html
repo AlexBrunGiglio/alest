@@ -3,7 +3,7 @@
         <div class="header-wrapper">
             <div class="d-flex justify-between align-baseline">
                 <h1>Liste des utilisateurs</h1>
-                <button mat-flat-button color="primary">Nouveau</button>
+                <button mat-flat-button color="primary" [routerLink]="'/' + RoutesList.AdminUsers + '/new'">Nouveau</button>
             </div>
             <hr>
             <div class="filter-wrapper d-flex ">
@@ -24,13 +24,13 @@
             </div>
         </div>
         <div class="list-wrapper">
-            <div class="item-wrapper">
+            <div class="item-wrapper" *ngFor="let user of users">
                 <div class="picture-data">
                     <div class="avatar avatar-xl bg-warning me-3">
                         <span class="avatar-content">ABG</span>
                     </div>
                     <div>
-                        <p>BRUN GIGLIO <br>Alexandre</p>
+                        <p>{{user.lastname |uppercase}} <br>{{user.firstname}}</p>
                     </div>
                 </div>
                 <div class="vertical-separator"></div>
@@ -38,14 +38,18 @@
                     <mat-icon>
                         mail_outline
                     </mat-icon>
-                    <p>alexbrun2a@gmail.com</p>
+                    <p>{{user.mail}}</p>
                 </div>
                 <div class="vertical-separator"></div>
                 <div class="data">
                     <mat-icon>
                         manage_accounts
                     </mat-icon>
-                    <p>Administrateur</p>
+                    <p>
+                        <ng-container *ngFor="let role of user.roles">
+                            {{role.label}}
+                        </ng-container>
+                    </p>
                 </div>
             </div>
         </div>
