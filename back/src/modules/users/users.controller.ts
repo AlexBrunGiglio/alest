@@ -8,11 +8,14 @@ import { RolesList } from '../../../../shared/shared-constant'
 import { AppErrorWithMessage } from '../../base/app-error';
 import { GenericResponse } from '../../base/generic-response';
 import { RolesGuard } from '../../auth/guards/roles.guard';
+import { AuthToolsService } from '../../auth/services/tools.service';
 @ApiTags('users')
 @Controller('users')
 export class UsersController extends BaseController {
     constructor(
         private readonly usersService: UsersService,
+        private readonly authToolsService: AuthToolsService,
+
     ) {
         super();
     }
