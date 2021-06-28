@@ -25,7 +25,14 @@ export class DatabaseService {
     }
 
     private async createDefaultUsers() {
-        await this.createUser('alex', 'dev', 'admin@local.com', [RolesList.Admin]);
+        await this.createUser({
+            firstname: "Alexandre",
+            lastname: "Brun-Giglio",
+            username: "alexbrun5",
+            mail: "admin@localhost.com",
+            password: "admin",
+            disabled: false,
+        }, [RolesList.Admin]);
     }
 
     private async createDefaultRoles() {
@@ -67,14 +74,16 @@ export class DatabaseService {
         }
     }
 
-    private async createUser(username: string, password: string, email: string, roles?: string[]) {
+    private async createUser(user: UserDto, roles?: string[]) {
         try {
-            const getUserResponse = await this.userService.findOne({ where: { username: username } });
+            const getUserResponse = await this.userService.findOne({ where: { username: user.username } });
             if (getUserResponse.success && !getUserResponse.user) {
                 const adminUser = new UserDto();
-                adminUser.username = username;
-                adminUser.password = password;
-                adminUser.mail = email;
+                adminUser.username = user.username;
+                adminUser.password = user.password;
+                adminUser.mail = user.mail;
+                adminUser.firstname = user.firstname;
+                adminUser.lastname = user.lastname;
                 adminUser.roles = [];
 
                 const getUserRoleResponse = await this.userRoleService.findAll();
@@ -89,7 +98,7 @@ export class DatabaseService {
 
                 const createUserResponse = await this.userService.createOrUpdate(adminUser);
                 if (createUserResponse.success)
-                    console.log('\x1b[34m', `L'utilisateur ${username} a été créé !`);
+                    console.log('\x1b[34m', `L'utilisateur ${user.username} a été créé !`);
             }
         }
         catch (err) {
