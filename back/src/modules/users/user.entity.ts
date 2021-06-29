@@ -24,6 +24,8 @@ export class User {
     phone?: string;
     @Column('text', { name: 'presentation', nullable: true })
     presentation?: string;
+    @Column('varchar', { name: 'initial', nullable: true })
+    initial?: string;
     @ManyToMany(() => UserRole, (userRole) => userRole.users, { cascade: true })
     public roles: UserRole[];
     @Column('boolean', { name: 'disabled', nullable: false, default: 0 })
@@ -42,6 +44,7 @@ export class User {
             presentation: this.presentation,
             roles: this.roles ? this.roles.map(x => x.toDto()) : [],
             disabled: this.disabled,
+            initial: this.initial,
         }
     }
 
@@ -55,6 +58,7 @@ export class User {
         this.phone = dto.phone;
         this.presentation = dto.presentation;
         this.disabled = dto.disabled;
+        this.initial = dto.initial;
 
         if (dto.roles) {
             this.roles = dto.roles.map<UserRole>(xDto => {
