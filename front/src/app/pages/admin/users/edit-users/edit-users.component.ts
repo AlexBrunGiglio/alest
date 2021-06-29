@@ -57,7 +57,7 @@ export class EditUsersComponent extends BaseComponent implements OnInit {
     await this.beforeSaveCheck();
     if (this.beforeSaveCheck().length)
       return console.table(this.beforeSaveCheck());
-    await this.checkDataFormat();
+    // await this.checkDataFormat();
     const saveUserResponse = await this.userService.createOrUpdateUser(this.user).toPromise();
     if (!saveUserResponse.success)
       this.openSnackBar(saveUserResponse.message)
