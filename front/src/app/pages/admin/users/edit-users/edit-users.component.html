@@ -1,3 +1,68 @@
 <app-drawer-admin-container>
-    edit user
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-title d-flex justify-between">
+                <ng-container>
+                    <h2>Création d'un utilisateur</h2>
+                </ng-container>
+                <div [style.visibility]="loading ? '' : 'hidden'">
+                    <mat-spinner diameter="40" strokeWidth="3"></mat-spinner>
+                </div>
+            </div>
+            <hr>
+            <ng-container *ngIf="user">
+                <div class="row">
+                    <div>
+                        <h4>Informations générales</h4>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Nom d'utilisateur</mat-label>
+                            <input matInput placeholder="Nom d'utilisateur" [(ngModel)]="user.username" type="text">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Nom</mat-label>
+                            <input matInput placeholder="Nom" [(ngModel)]="user.lastname" type="text">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Prénom</mat-label>
+                            <input matInput placeholder="Prénom" [(ngModel)]="user.firstname" type="text">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Email" [(ngModel)]="user.mail" type="email">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Téléphone</mat-label>
+                            <input matInput placeholder="Téléphone" [(ngModel)]="user.phone" type="tel">
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Présentation</mat-label>
+                            <textarea matInput placeholder="Présentation" [(ngModel)]="user.presentation" rows="21" cols="7"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div>
+                    <h4>
+                        <mat-icon>add_moderator</mat-icon> Rôles
+                    </h4>
+                    <div>
+                        <mat-form-field appearance="outline" class="w-50">
+                            <mat-label>Rôles</mat-label>
+                            <mat-select multiple [(ngModel)]="user.roles">
+                                <mat-option *ngFor="let role of userRolesList" [value]="role">
+                                    {{role.label}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div>
+                    <button mat-flat-button (click)="save()" color="primary">Enregistrer</button>
+                </div>
+            </ng-container>
+        </div>
+    </div>
 </app-drawer-admin-container>
