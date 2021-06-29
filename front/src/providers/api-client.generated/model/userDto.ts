@@ -26,5 +26,6 @@ export interface UserDto {
     roles?: Array<UserRoleDto>;
     rolesString?: Array<string>;
     disabled: boolean;
+    initial?: string;
 }
 
