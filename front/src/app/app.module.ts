@@ -31,6 +31,8 @@ import { SpinnerModule } from './components/spinner/spinner.module';
 import { AuthGuard } from './routes/guards/auth-guard';
 import { RoleGuard } from './routes/guards/role-guard';
 import { HttpInterceptor } from '../providers/http-interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -73,6 +75,8 @@ export function apiConfigFactory(): Configuration {
     MatFormFieldModule,
     MatPaginatorModule,
     SpinnerModule,
+    MatSnackBarModule,
+    MatDialogModule,
   ],
   providers: [
     AuthGuard,
