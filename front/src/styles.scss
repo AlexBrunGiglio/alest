@@ -339,4 +339,7 @@ app-spinner {
 .mat-fab.mat-primary,
 .mat-mini-fab.mat-primary {
     background-color: #435ebe !important;
+    min-width: 160px;
+    min-height: 40px;
+    border-radius: 8px;
 }
