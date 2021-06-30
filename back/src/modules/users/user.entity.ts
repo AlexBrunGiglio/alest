@@ -39,7 +39,6 @@ export class User {
             lastname: this.lastname,
             username: this.username,
             mail: this.mail,
-            password: this.password,
             phone: this.phone,
             presentation: this.presentation,
             roles: this.roles ? this.roles.map(x => x.toDto()) : [],
@@ -54,7 +53,6 @@ export class User {
         this.lastname = dto.lastname;
         this.username = dto.username;
         this.mail = dto.mail;
-        this.password = dto.password;
         this.phone = dto.phone;
         this.presentation = dto.presentation;
         this.disabled = dto.disabled;
