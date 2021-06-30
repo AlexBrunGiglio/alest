@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { accessToken } from '../../../../environments/constant';
 import { AuthService, LoginViewModel, UsersService } from '../../../../providers/api-client.generated';
@@ -12,7 +12,7 @@ import { BaseComponent } from '../../../base/base.component';
   encapsulation: ViewEncapsulation.None,
 })
 
-export class LoginComponent extends BaseComponent {
+export class LoginComponent extends BaseComponent implements OnInit {
   hide = true;
   loginViewModel: LoginViewModel;
   errorMsg: string;
@@ -22,6 +22,13 @@ export class LoginComponent extends BaseComponent {
   ) {
     super();
     this.init()
+  }
+
+  ngOnInit() {
+    if (AuthDataService.currentUser) {
+      this.router.navigate(['/']);
+      return;
+    }
   }
 
   async init() {
