@@ -3,7 +3,8 @@
         <div class="card">
             <div class="card-title d-flex justify-between">
                 <ng-container>
-                    <h2>Création d'un utilisateur</h2>
+                    <h2 *ngIf="isNew">Création d'un utilisateur</h2>
+                    <h2 *ngIf="!isNew">Modification de {{user.username}}</h2>
                 </ng-container>
                 <div [style.visibility]="loading ? '' : 'hidden'">
                     <mat-spinner diameter="40" strokeWidth="3"></mat-spinner>
@@ -54,14 +55,19 @@
                 </div>
                 <div class="row mt-1">
                     <div class="col">
-                        <div class="title-icon">
-                            <mat-icon>lock</mat-icon>
-                            <h4>Mot de passe</h4>
+                        <div class="password">
+                            <div class="title-icon">
+                                <mat-icon>lock</mat-icon>
+                                <h4>Mot de passe</h4>
+                            </div>
+                            <button mat-icon-button color="primary" (click)="changePassword()">
+                                <mat-icon>edit</mat-icon>
+                            </button>
                         </div>
                         <div>
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Mot de passe</mat-label>
-                                <input matInput placeholder="Mot de passe" [(ngModel)]="user.password" type="password">
+                                <input [disabled]="!editPassword" matInput placeholder="Mot de passe" [(ngModel)]="user.password" type="password">
                             </mat-form-field>
                         </div>
                     </div>

@@ -16,6 +16,8 @@ export class EditUsersComponent extends BaseComponent implements OnInit {
   user: UserDto;
   userRolesList: UserRoleDto[] = [];
   userId: string;
+  editPassword = false;
+  isNew = false;
   constructor(
     private userService: UsersService,
     private userRoleService: UsersRolesService,
@@ -39,6 +41,7 @@ export class EditUsersComponent extends BaseComponent implements OnInit {
     console.log("🚀 ~ EditUsersComponent ~ init ~ this.user", this.userId);
     if (this.userId === 'new') {
       this.user = {} as any;
+      this.isNew = true;
     }
     else {
       const getUserResponse = await this.userService.getUser(this.userId).toPromise();
@@ -94,5 +97,10 @@ export class EditUsersComponent extends BaseComponent implements OnInit {
       if (!phoneRegex.test(this.user.phone))
         this.openSnackBar("Le format du numéro de téléphone est incorrect");
     }
+  }
+
+
+  changePassword() {
+    this.editPassword = true;
   }
 }
