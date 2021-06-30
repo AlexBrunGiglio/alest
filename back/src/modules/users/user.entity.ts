@@ -30,7 +30,7 @@ export class User {
     public roles: UserRole[];
     @Column('boolean', { name: 'disabled', nullable: false, default: 0 })
     disabled: boolean;
-    public toDto(): UserDto {
+    public toDto(getPassword = false): UserDto {
         return {
             id: this.id,
             creationDate: this.creationDate,
@@ -44,6 +44,7 @@ export class User {
             roles: this.roles ? this.roles.map(x => x.toDto()) : [],
             disabled: this.disabled,
             initial: this.initial,
+            password: getPassword ? this.password : undefined,
         }
     }
 

@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: RoutesList.AdminHome,
     component: HomeComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: RoutesList.Login,
@@ -40,13 +40,13 @@ const routes: Routes = [
   {
     path: RoutesList.AdminUsers,
     component: UsersListComponent,
-    // canActivate: [RoleGuard],
+    canActivate: [RoleGuard],
     data: { roles: [RolesList.Admin] },
   },
   {
     path: RoutesList.AdminUsers + '/:id',
     component: EditUsersComponent,
-    // canActivate: [RoleGuard],
+    canActivate: [RoleGuard],
     data: { roles: [RolesList.Admin] },
   },
   {

@@ -19,7 +19,6 @@ export class AuthController extends BaseController {
     @ApiResponse({ status: 200, description: 'Login response', type: GenericResponse })
     @HttpCode(200)
     async login(@Body() loginViewModel: LoginViewModel): Promise<GenericResponse> {
-        console.log("🚀 ~ AuthController ~ login ~ loginViewModel", loginViewModel);
         const response = await this.authService.login(loginViewModel);
         return response;
     }

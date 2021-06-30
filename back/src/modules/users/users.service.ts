@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { ApplicationBaseModelService } from "../../base/base-model.service";
+import { FindOneOptions, Repository } from "typeorm";
+import { ApplicationBaseModelService, LinqQueryWrapper } from "../../base/base-model.service";
 import { MainHelpers } from "../../base/main-helper";
 import { GetUserResponse, GetUsersResponse, UserDto } from "./user-dto";
 import { User } from "./user.entity";
@@ -52,5 +52,9 @@ export class UsersService extends ApplicationBaseModelService<User, UserDto, Get
             response.handleError(err);
         }
         return response;
+    }
+
+    async findOne(conditions: FindOneOptions<User> | LinqQueryWrapper<User>, getPassword = false): Promise<GetUserResponse> {
+        return super.findOne(conditions, getPassword);
     }
 }

@@ -3,11 +3,13 @@ import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { accessToken } from "../environments/constant";
+import { AuthProvider } from "../services/auth-provider";
 import { GenericResponse } from "./api-client.generated";
 @Injectable()
 export class HttpInterceptor {
     constructor(
         private http: HttpClient,
+        private authProvider: AuthProvider,
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -31,6 +33,9 @@ export class HttpInterceptor {
                             const genericResponse: GenericResponse = event.body;
                             if (genericResponse && !genericResponse.success && !genericResponse.message)
                                 genericResponse.message = "Une erreur s'est produite";
+                            console.log("🚀 ~ HttpInterceptor ~ &&event.headers.get ~ genericResponse", genericResponse);
+                            if (genericResponse.token)
+                                this.authProvider.handleLoginResponse(genericResponse);
                         }
                         catch (err) {
                         }
