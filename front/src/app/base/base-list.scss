@@ -74,7 +74,11 @@
         transform: scale(1.02);
         cursor: pointer;
     }
-    .mat-paginator mat-paginator {
-        border-radius: 15px;
+    .mat-paginator-sticky {
+        position: sticky;
+        bottom: 0;
+    }
+    .mat-paginator-container {
+        background-color: #e00c0c !important;
     }
 }
