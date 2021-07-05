@@ -126,6 +126,25 @@ app-sidebar {
             }
         }
     }
+    .menu-bottom {
+        position: absolute;
+        left: 100px;
+        bottom: 30px;
+        .icon-btn {
+            margin-right: 10px;
+            background-color: #435ebe;
+            border: transparent;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            mat-icon {
+                color: white;
+            }
+        }
+        .logout {
+            background-color: #be4343;
+        }
+    }
     @media screen and (max-width: 1199px) {
         .sidebar-wrapper {
             position: absolute;
