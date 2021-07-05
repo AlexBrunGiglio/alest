@@ -34,6 +34,7 @@ import { HttpInterceptor } from '../providers/http-interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthProvider } from '../services/auth-provider';
+import { DialogService } from '../services/dialog.service';
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -83,6 +84,7 @@ export function apiConfigFactory(): Configuration {
     AuthGuard,
     RoleGuard,
     AuthProvider,
+    DialogService,
     { provide: BASE_PATH, useValue: environment.apiBaseUrl },
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
   ],
