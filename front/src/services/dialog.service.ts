@@ -1,7 +1,14 @@
 import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { DialogComponent } from "../app/components/dialog/dialog.component";
 
+interface Data {
+    header: string;
+    text: string;
+    okLabel: string;
+    cancelLabel: string;
+}
 @Injectable()
 export class DialogService {
     constructor(
@@ -16,7 +23,8 @@ export class DialogService {
         this.snackBar.open(text, null, { direction: 'ltr', duration: 4000, horizontalPosition: 'center', verticalPosition: 'bottom' });
     }
 
-    public showDialog(data: string) {
-        this.dialog.open(null, { data: data })
+    public async showDialog(data: Data) {
+        const dialog = await this.dialog.open(DialogComponent, { data: data }).afterClosed().toPromise();
+        return dialog;
     }
 }
