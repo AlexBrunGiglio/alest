@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AuthService, GenericResponse, LoginViewModel, UserDto, UsersService } from "../providers/api-client.generated";
+import { AuthService, GenericResponse, LoginViewModel, ReferentialService, UserDto, UsersService } from "../providers/api-client.generated";
 import { JwtPayload } from "../../../shared/jwt-payload"
 import { AuthDataService } from "./auth-data.service";
 import jwtDecode from "jwt-decode";
@@ -10,6 +10,7 @@ export class AuthProvider {
     constructor(
         private authService: AuthService,
         private userService: UsersService,
+        private referentialService: ReferentialService,
     ) {
 
     }
@@ -58,5 +59,13 @@ export class AuthProvider {
             LocalStorageService.saveInLocalStorage(accessToken, AuthDataService.currentAuthToken);
         }
         this.getUserFromAccessToken(AuthDataService.currentAuthToken, true);
+    }
+
+    public async logout() {
+        const userId = AuthDataService.currentUser?.id;
+        AuthDataService.currentUser = null;
+        AuthDataService.currentAuthToken = null;
+        AuthDataService.currentRequester = null;
+        LocalStorageService.removeFromLocalStorage(accessToken);
     }
 }
