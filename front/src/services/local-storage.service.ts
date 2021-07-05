@@ -15,4 +15,44 @@ export class LocalStorageService {
             }
         }
     }
+
+    public static getObjectFromLocalStorage(key: string): any {
+        if (typeof localStorage === 'undefined' || !key)
+            return;
+        const value = this.getFromLocalStorage(key);
+        if (!value)
+            return null;
+        let obj = null;
+        try {
+            obj = JSON.parse(value);
+        }
+        catch (err) {
+            console.error('getObjectFromLocalStorage', err);
+        }
+        return obj;
+    }
+
+    public static getFromLocalStorage(key: string): string {
+        if (typeof localStorage === 'undefined' || !key)
+            return null;
+        return localStorage.getItem(key);
+    }
+
+    public static removeFromLocalStorage(key: string): void {
+        if (typeof localStorage === 'undefined' || !key)
+            return;
+        localStorage.removeItem(key);
+    }
+
+    public static getAllKeys(keyStartsWith?: string): string[] {
+        const keys: string[] = [];
+        if (typeof localStorage !== 'undefined') {
+            for (let i = 0; i <= localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && (!keyStartsWith || key.startsWith(keyStartsWith)))
+                    keys.push(key);
+            }
+        }
+        return keys;
+    }
 }

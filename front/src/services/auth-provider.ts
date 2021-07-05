@@ -25,7 +25,6 @@ export class AuthProvider {
 
     public getUserFromAccessToken(accessToken: string, setCurrentUser: boolean) {
         let user: UserDto;
-        console.log("test");
 
         if (!accessToken)
             return null;
@@ -57,7 +56,6 @@ export class AuthProvider {
         if (response.success) {
             AuthDataService.currentAuthToken = response.token;
             LocalStorageService.saveInLocalStorage(accessToken, AuthDataService.currentAuthToken);
-            console.log("est");
         }
         this.getUserFromAccessToken(AuthDataService.currentAuthToken, true);
     }
