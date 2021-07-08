@@ -1,4 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import { BaseSearchRequest } from "../../base/base-search-request";
 import { GenericResponse } from "../../base/generic-response";
 import { BaseSearchResponse } from "../../base/search-response";
 import { UserRoleDto } from "../users-roles/user-role-dto";
@@ -42,4 +43,8 @@ export class GetUserResponse extends GenericResponse {
 export class GetUsersResponse extends BaseSearchResponse {
     @ApiProperty({ type: () => UserDto, isArray: true })
     users: UserDto[] = [];
+}
+
+export class GetUsersRequest extends BaseSearchRequest {
+
 }

@@ -2,13 +2,16 @@ import { Body, Controller, Delete, Get, HttpCode, Param, Post, Query, UseGuards 
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BaseController } from '../../base/base.controller';
 import { Roles } from '../../base/services/roles.decorator';
-import { GetUserResponse, GetUsersResponse, UserDto } from './user-dto';
+import { GetUserResponse, GetUsersRequest, GetUsersResponse, UserDto } from './user-dto';
 import { UsersService } from './users.service';
 import { RolesList } from '../../../../shared/shared-constant'
 import { AppErrorWithMessage } from '../../base/app-error';
 import { GenericResponse } from '../../base/generic-response';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { AuthToolsService } from '../../auth/services/tools.service';
+import { BaseSearchRequest } from '../../base/base-search-request';
+import { User } from './user.entity';
+import { Like } from 'typeorm';
 @ApiTags('users')
 @Controller('users')
 export class UsersController extends BaseController {
@@ -26,8 +29,21 @@ export class UsersController extends BaseController {
     @ApiOperation({ summary: 'Get all users', operationId: 'getAllUsers' })
     @ApiResponse({ status: 200, description: 'Get all users', type: GetUsersResponse })
     @HttpCode(200)
-    async getAll(): Promise<GetUsersResponse> {
-        return await this.usersService.findAll();
+    async getAll(@Query() request: GetUsersRequest): Promise<GetUsersResponse> {
+        const findOptions = BaseSearchRequest.getDefaultFindOptions<User>(request);
+        if (request.search) {
+            if (!findOptions.where)
+                findOptions.where = [{}];
+            findOptions.where = [
+                {
+                    firstname: Like('%' + request.search + '%'),
+                },
+                {
+                    lastname: Like('%' + request.search + '%'),
+                },
+            ]
+        }
+        return await this.usersService.findAll(findOptions);
     }
 
     @UseGuards(RolesGuard)
