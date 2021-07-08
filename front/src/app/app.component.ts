@@ -26,6 +26,8 @@ export class AppComponent extends BaseComponent {
 
   private initForBrowser() {
     const accesToken = LocalStorageService.getFromLocalStorage(accessToken);
+    if (!accesToken)
+      this.router.navigate(['/login']);
     this.authProvider.getUserFromAccessToken(accesToken, true);
     if (!AuthDataService.currentUser)
       this.router.navigate(['/login']);

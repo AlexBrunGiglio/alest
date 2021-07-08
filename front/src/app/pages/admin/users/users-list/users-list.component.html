@@ -9,7 +9,7 @@
             <div class="filter-wrapper d-flex ">
                 <mat-form-field appearance="outline">
                     <mat-label>Recherche</mat-label>
-                    <input matInput placeholder="Identifiant">
+                    <input matInput [(ngModel)]="request.search" (ngModelChange)="loadData()" placeholder="Identifiant">
                     <mat-icon matPrefix>account_circle</mat-icon>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
