@@ -20,10 +20,10 @@ export class UsersListComponent extends BaseComponent implements OnInit {
   }
 
   async init() {
-    await this.loadData();
+    await this.loadUsers();
   }
 
-  async loadData() {
+  async loadUsers() {
     this.loading = true;
     const getUsersResponse = await this.userService.getAllUsers(null, null, null, null, this.request.search).toPromise();
     if (!getUsersResponse.success)
