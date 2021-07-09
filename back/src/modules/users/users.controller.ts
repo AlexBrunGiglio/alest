@@ -11,13 +11,15 @@ import { RolesGuard } from '../../auth/guards/roles.guard';
 import { AuthToolsService } from '../../auth/services/tools.service';
 import { BaseSearchRequest } from '../../base/base-search-request';
 import { User } from './user.entity';
-import { Like } from 'typeorm';
+import { FindConditions, In, Like } from 'typeorm';
+import { UserRoleService } from '../users-roles/user-roles.service';
 @ApiTags('users')
 @Controller('users')
 export class UsersController extends BaseController {
     constructor(
         private readonly usersService: UsersService,
         private readonly authToolsService: AuthToolsService,
+        private readonly userRoleService: UserRoleService,
 
     ) {
         super();

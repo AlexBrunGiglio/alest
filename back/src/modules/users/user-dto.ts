@@ -46,5 +46,6 @@ export class GetUsersResponse extends BaseSearchResponse {
 }
 
 export class GetUsersRequest extends BaseSearchRequest {
-
+    @ApiPropertyOptional({ description: "Roles separated by comma", })
+    role?: string;
 }
