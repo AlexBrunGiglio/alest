@@ -1,5 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { accessToken } from '../environments/constant';
 import { AuthDataService } from '../services/auth-data.service';
@@ -17,7 +16,6 @@ export class AppComponent extends BaseComponent {
   constructor(
     private router: Router,
     private authProvider: AuthProvider,
-    @Inject(PLATFORM_ID) private platformId: any,
   ) {
     super();
     this.initForBrowser();
