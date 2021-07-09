@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDto, UsersService } from '../../../../../providers/api-client.generated';
+import { UserDto, UserRoleDto, UsersRolesService, UsersService } from '../../../../../providers/api-client.generated';
+import { DialogService } from '../../../../../services/dialog.service';
 import { BaseComponent, BaseRequest } from '../../../../base/base.component';
 
 @Component({
@@ -11,6 +12,8 @@ export class UsersListComponent extends BaseComponent implements OnInit {
   users: UserDto[];
   constructor(
     private userService: UsersService,
+    private userRoleService: UsersRolesService,
+    private dialogService: DialogService,
   ) {
     super();
     this.init();
