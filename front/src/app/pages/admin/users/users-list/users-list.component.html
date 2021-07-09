@@ -3,28 +3,22 @@
         <div class="header-wrapper">
             <div class="d-flex justify-between align-baseline">
                 <h1>Liste des utilisateurs</h1>
-                <button mat-flat-button color="primary" [routerLink]="'/' + RoutesList.AdminUsers + '/new'">Nouveau</button>
+                <button mat-flat-button color="primary"
+                    [routerLink]="'/' + RoutesList.AdminUsers + '/new'">Nouveau</button>
             </div>
             <hr>
-            <div class="filter-wrapper d-flex ">
+            <div class="filter-wrapper d-flex">
                 <mat-form-field appearance="outline">
                     <mat-label>Recherche</mat-label>
-                    <input matInput [(ngModel)]="request.search" (ngModelChange)="loadUsers()" placeholder="Identifiant">
+                    <input matInput [(ngModel)]="request.search" (ngModelChange)="loadUsers()"
+                        placeholder="Identifiant">
                     <mat-icon matPrefix>account_circle</mat-icon>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Select</mat-label>
-                    <mat-select>
-                        <mat-option>
-                            Valeur 1
-                        </mat-option>
-                    </mat-select>
-                    <mat-icon matPrefix>manage_accounts</mat-icon>
                 </mat-form-field>
             </div>
         </div>
         <div class="list-wrapper">
-            <div class="item-wrapper" *ngFor="let user of users" [routerLink]="'/' + RoutesList.AdminUsers + '/' + user.id">
+            <div class="item-wrapper" *ngFor="let user of users"
+                [routerLink]="'/' + RoutesList.AdminUsers + '/' + user.id">
                 <div class="picture-data">
                     <div class="avatar avatar-xl bg-warning me-3">
                         <span class="avatar-content">{{user.initial |uppercase}}</span>
