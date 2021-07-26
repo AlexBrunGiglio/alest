@@ -2,6 +2,7 @@ import { Directive, OnDestroy } from "@angular/core";
 import { RoutesList } from "../routes/routes";
 import { RolesList } from "../../../../shared/shared-constant"
 import { environment } from "../../environments/environment";
+import { GlobalAppService } from "../../services/global.service";
 
 export interface BaseRequest {
     start?: number;
@@ -18,6 +19,7 @@ export abstract class BaseComponent implements OnDestroy {
     public environment = environment;
     public loading = false;
     request: BaseRequest = {};
+    GlobalAppService = GlobalAppService;
     constructor() {
     }
 

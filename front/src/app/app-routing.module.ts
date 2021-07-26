@@ -45,9 +45,7 @@ const routes: Routes = [
   },
   {
     path: RoutesList.AdminUsers + '/:id',
-    component: EditUsersComponent,
-    canActivate: [RoleGuard],
-    data: { roles: [RolesList.Admin] },
+    component: EditUsersComponent
   },
   {
     path: RoutesList.Unauthorized,
