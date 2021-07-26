@@ -5,10 +5,11 @@ import { AdminSidebarComponent } from "./menu/admin-menu.component";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from "@angular/material/icon";
 import { RouterModule } from "@angular/router";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
     imports: [
-        SharedModule,
+        CommonModule,
         MatSidenavModule,
         MatIconModule,
         RouterModule,

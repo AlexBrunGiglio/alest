@@ -19,8 +19,9 @@
                     <mat-icon class="material-icons-round">dashboard</mat-icon>
                     <span>Dashboard</span>
                 </a>
-                <a *ngIf="GlobalAppService.userHasRole(RolesList.Admin)" [routerLink]="'/' + RoutesList.AdminUsers"
-                    routerLinkActive="router-link-active" class='sidebar-link'>
+                <a *ngIf="GlobalAppService.userIsAdmin(AuthDataService.currentUser)"
+                    [routerLink]="'/' + RoutesList.AdminUsers" routerLinkActive="router-link-active"
+                    class='sidebar-link'>
                     <mat-icon class="material-icons-round">supervised_user_circle</mat-icon>
                     <span>Utilisateurs</span>
                 </a>

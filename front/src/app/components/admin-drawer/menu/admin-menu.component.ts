@@ -13,6 +13,7 @@ import { BaseComponent } from "../../../base/base.component";
 })
 
 export class AdminSidebarComponent extends BaseComponent {
+    AuthDataService = AuthDataService;
     constructor(
         private router: Router,
         public dialogService: DialogService,
@@ -22,7 +23,7 @@ export class AdminSidebarComponent extends BaseComponent {
     }
 
     redirectToProfile() {
-        this.router.navigateByUrl('/' + this.RoutesList.AdminUsers + '/' + AuthDataService.currentUser.id);
+        this.router.navigateByUrl('/' + this.RoutesList.AdminUsers + '/' + this.AuthDataService.currentUser.id);
     }
 
     async logout() {
