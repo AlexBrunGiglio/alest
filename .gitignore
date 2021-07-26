@@ -2,6 +2,9 @@
 /back/dist
 /back/node_modules
 
+# env
+/back/**/env.json
+
 # Logs
 /back/logs
 /back/*.log
