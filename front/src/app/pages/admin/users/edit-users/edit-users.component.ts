@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserDto, UserRoleDto, UsersRolesService, UsersService } from '../../../../../providers/api-client.generated';
+import { AuthDataService } from '../../../../../services/auth-data.service';
 import { BaseComponent } from '../../../../base/base.component';
 
 @Component({
@@ -44,6 +45,8 @@ export class EditUsersComponent extends BaseComponent implements OnInit {
       this.isNew = true;
     }
     else {
+      if (!this.GlobalAppService.userHasRole(AuthDataService.currentUser, this.RolesList.Admin) && this.userId !== AuthDataService.currentUser?.id)
+        this.router.navigateByUrl('/' + this.RoutesList.AdminHome);
       const getUserResponse = await this.userService.getUser(this.userId).toPromise();
       if (!getUserResponse.success)
         this.openSnackBar(getUserResponse.message);
