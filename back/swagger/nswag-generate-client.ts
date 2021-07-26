@@ -17,5 +17,5 @@ exec(`npx openapi-generator-cli generate -i "${apiSwaggerUrl}" -g typescript-ang
         console.log(err);
         return;
     }
-    console.log(`Code client généré avec succès !`);
+    console.log('\x1b[34m', `Code client généré avec succès !`);
 });
