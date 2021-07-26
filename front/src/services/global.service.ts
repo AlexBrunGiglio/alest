@@ -10,4 +10,8 @@ export class GlobalAppService {
     public static userHasOneOfRoles(user: UserDto, roles: string[]) {
         return SharedService.userHasOneOfRoles(user, roles);
     }
+
+    public static userIsAdmin(user: UserDto) {
+        return SharedService.userIsAdmin(user);
+    }
 }
