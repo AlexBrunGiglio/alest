@@ -8,7 +8,6 @@ import { UsersListComponent } from './pages/admin/users/users-list/users-list.co
 import { EditUsersComponent } from './pages/admin/users/edit-users/edit-users.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { AdminDrawerModule } from './components/admin-drawer/admin-drawer.module';
-import { SharedModule } from './shared.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -35,6 +34,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthProvider } from '../services/auth-provider';
 import { DialogService } from '../services/dialog.service';
+import { MatTabsModule } from '@angular/material/tabs';
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -79,6 +79,7 @@ export function apiConfigFactory(): Configuration {
     SpinnerModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatTabsModule,
   ],
   providers: [
     AuthGuard,

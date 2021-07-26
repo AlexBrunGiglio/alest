@@ -3,7 +3,7 @@ app-edit-users {
     .card {
         height: 85vh;
         box-shadow: 0px 0px 10px 5px rgb(220 220 220 / 68%);
-        padding: 4rem;
+        padding: 3.5rem;
         .card-title {
             h2 {
                 font-size: 32px;
@@ -27,10 +27,15 @@ app-edit-users {
     }
     .title-icon {
         display: flex;
+        margin-top: 20px;
     }
     .password {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
+    }
+
+    .mat-tab-body-content {
+        overflow: unset !important;
     }
 }
