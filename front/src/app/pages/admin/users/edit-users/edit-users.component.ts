@@ -48,6 +48,7 @@ export class EditUsersComponent extends BaseComponent implements OnInit {
       if (!getUserResponse.success)
         this.openSnackBar(getUserResponse.message);
       this.user = getUserResponse.user;
+      console.log("🚀 ~ EditUsersComponent ~ init ~ this.user", this.user);
     }
     const getUserRolesResponse = await this.userRoleService.getUserRoles().toPromise();
     if (!getUserRolesResponse.success)
