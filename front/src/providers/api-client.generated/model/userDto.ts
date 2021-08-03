@@ -14,6 +14,7 @@ import { UserRoleDto } from './userRoleDto';
 
 export interface UserDto { 
     id?: string;
+    refreshToken?: string;
     username: string;
     lastname?: string;
     firstname?: string;

@@ -30,9 +30,12 @@ export class User {
     public roles: UserRole[];
     @Column('boolean', { name: 'disabled', nullable: false, default: 0 })
     disabled: boolean;
+    @Column('varchar', { name: 'refreshToken', length: 36, nullable: true })
+    refreshToken?: string;
     public toDto(getPassword = false): UserDto {
         return {
             id: this.id,
+            refreshToken: this.refreshToken,
             creationDate: this.creationDate,
             modifDate: this.modifDate,
             firstname: this.firstname,
@@ -50,6 +53,7 @@ export class User {
 
     public fromDto(dto: UserDto) {
         this.id = dto.id;
+        this.refreshToken = dto.refreshToken;
         this.firstname = dto.firstname;
         this.lastname = dto.lastname;
         this.username = dto.username;

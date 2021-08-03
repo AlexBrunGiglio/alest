@@ -1,12 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
+import { Request } from "express";
+import { refreshTokenLsKey } from "../../../shared/shared-constant";
 import { AppError, AppErrorWithMessage } from "../base/app-error";
 import { GenericResponse } from "../base/generic-response";
 import { MainHelpers } from "../base/main-helper";
-import { UserDto } from "../modules/users/user-dto";
+import { GetUserResponse, UserDto } from "../modules/users/user-dto";
 import { UsersService } from "../modules/users/users.service";
-import { LoginViewModel, RegisterRequest } from "./auth-request";
-import { AuthToolsService } from "./services/tools.service";
+import { LoginResponse, LoginViewModel, RegisterRequest } from "./auth-request";
+import { CookieHelpers } from "./cookie-helper";
+import { AuthCustomRules, AuthToolsService } from "./services/tools.service";
 
 @Injectable()
 export class AuthService {
@@ -54,8 +57,8 @@ export class AuthService {
         return response;
     }
 
-    async login(loginViewModel: LoginViewModel): Promise<GenericResponse> {
-        const response = new GenericResponse();
+    async login(loginViewModel: LoginViewModel): Promise<LoginResponse> {
+        const response = new LoginResponse();
         try {
             if (!loginViewModel.password || !loginViewModel.username)
                 throw AppError.getBadRequestError();
@@ -72,6 +75,33 @@ export class AuthService {
                 console.log("🚀 ~ AuthService ~ login ~ loginViewModel.password", loginViewModel.password);
                 throw new AppErrorWithMessage('Utilisateur ou mot de passe incorrect !', 403);
             }
+            response.token = AuthToolsService.createUserToken(this.jwtService, findUserResponse.user);
+            response.success = true;
+        }
+        catch (err) {
+            response.handleError(err);
+        }
+        return response;
+    }
+
+    async refreshToken(request: Request): Promise<LoginResponse> {
+        const response = new LoginResponse();
+        try {
+            let findUserResponse: GetUserResponse;
+            const refreshTokenFromCookie = CookieHelpers.getCookie(request, refreshTokenLsKey);
+            if (refreshTokenFromCookie) {
+                findUserResponse = await this.userService.findOne({ where: { refreshToken: refreshTokenFromCookie } });
+            }
+            else {
+                throw new AppError('Invalid request');
+            }
+            if (!findUserResponse.success)
+                throw new AppError(findUserResponse.error);
+            if (!findUserResponse.user)
+                throw new AppErrorWithMessage('Utilisateur ou mot de passe incorrect !', 403);
+            if (findUserResponse.user.disabled)
+                throw new AppErrorWithMessage('Utilisateur désactivé. Impossible de se connecter', 403);
+            await AuthCustomRules(findUserResponse.user);
             response.token = AuthToolsService.createUserToken(this.jwtService, findUserResponse.user);
             response.success = true;
         }

@@ -5,6 +5,7 @@ import { JwtPayload } from '../../../../shared/jwt-payload'
 import { ApplicationBaseService } from '../../base/base-service';
 import { UserDto } from '../../modules/users/user-dto';
 import { Request, Response } from 'express';
+import { AppErrorWithMessage } from '../../base/app-error';
 
 
 export type JwtDecodeError = 'TokenExpiredError' | 'JsonWebTokenError' | 'NoTokenError' | 'NoRequestData';
@@ -98,5 +99,13 @@ export class AuthToolsService extends ApplicationBaseService {
         if (this.request)
             return AuthToolsService.getJwtPayloadFromRequest(this.jwtService, this.request, ignoreExpiration).payload;
         return null;
+    }
+}
+
+export async function AuthCustomRules(user: UserDto) {
+    //Write here custom auth rules
+    const ok = !!user;
+    if (!ok) {
+        throw new AppErrorWithMessage('Custom error', 403);
     }
 }

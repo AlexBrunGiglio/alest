@@ -275,13 +275,14 @@ export class UsersService {
      * @param orderby order by field
      * @param order order direction (asc | desc)
      * @param search Search
+     * @param role Roles separated by comma
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAllUsers(start?: number, length?: number, orderby?: string, order?: string, search?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GetUsersResponse>;
-    public getAllUsers(start?: number, length?: number, orderby?: string, order?: string, search?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GetUsersResponse>>;
-    public getAllUsers(start?: number, length?: number, orderby?: string, order?: string, search?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GetUsersResponse>>;
-    public getAllUsers(start?: number, length?: number, orderby?: string, order?: string, search?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public getAllUsers(start?: number, length?: number, orderby?: string, order?: string, search?: string, role?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GetUsersResponse>;
+    public getAllUsers(start?: number, length?: number, orderby?: string, order?: string, search?: string, role?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GetUsersResponse>>;
+    public getAllUsers(start?: number, length?: number, orderby?: string, order?: string, search?: string, role?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GetUsersResponse>>;
+    public getAllUsers(start?: number, length?: number, orderby?: string, order?: string, search?: string, role?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (start !== undefined && start !== null) {
@@ -303,6 +304,10 @@ export class UsersService {
         if (search !== undefined && search !== null) {
           queryParameters = this.addToHttpParams(queryParameters,
             <any>search, 'search');
+        }
+        if (role !== undefined && role !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>role, 'role');
         }
 
         let headers = this.defaultHeaders;

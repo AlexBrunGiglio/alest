@@ -21,6 +21,7 @@ model/getUserResponse.ts
 model/getUserRoleResponse.ts
 model/getUserRolesResponse.ts
 model/getUsersResponse.ts
+model/loginResponse.ts
 model/loginViewModel.ts
 model/models.ts
 model/multipleAppValuesRequest.ts

@@ -19,5 +19,7 @@ export enum PresenceStatut {
     Busy = 'PresenceStatut_Busy',
     Offline = 'PresenceStatut_Offline,'
 }
-
-export const refreshTokenLsKey = 'template_token_token';
+export enum AppResponseCode {
+    ExpiredToken = 4031,
+}
+export const refreshTokenLsKey = 'template_refresh_token';

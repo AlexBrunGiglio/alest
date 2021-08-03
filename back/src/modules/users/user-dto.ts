@@ -7,6 +7,8 @@ import { UserRoleDto } from "../users-roles/user-role-dto";
 export class UserDto {
     @ApiPropertyOptional()
     id?: string;
+    @ApiPropertyOptional()
+    refreshToken?: string;
     @ApiProperty()
     username: string;
     @ApiPropertyOptional()

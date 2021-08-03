@@ -8,6 +8,7 @@ export * from './getUserResponse';
 export * from './getUserRoleResponse';
 export * from './getUserRolesResponse';
 export * from './getUsersResponse';
+export * from './loginResponse';
 export * from './loginViewModel';
 export * from './multipleAppValuesRequest';
 export * from './registerRequest';
