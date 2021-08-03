@@ -208,5 +208,25 @@ export abstract class ApplicationBaseModelService<X extends { id: string | numbe
         return response;
     }
 
-
+    public async enable(ids: string[]) {
+        if (!ids)
+            return null;
+        const response = new GenericResponse();
+        try {
+            if (ids && ids.length > 0) {
+                for (const id of ids) {
+                    const getOneResponse = await this.findOne({ where: { id: id } });
+                    if (getOneResponse.success && getOneResponse[this.modelOptions.getOneResponseField]) {
+                        getOneResponse[this.modelOptions.getOneResponseField][this.modelOptions.archiveField] = !this.modelOptions.archiveFieldValue;
+                        await this.createOrUpdate(getOneResponse[this.modelOptions.getOneResponseField]);
+                    }
+                }
+                response.success = true;
+            }
+        }
+        catch (err) {
+            response.handleError(err);
+        }
+        return response;
+    }
 }
