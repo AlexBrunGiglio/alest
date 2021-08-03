@@ -6,7 +6,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o",
+    "start": "ng serve --port 4210 -o",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
