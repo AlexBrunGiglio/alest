@@ -3,11 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './pages/admin/home/home.component';
-import { UsersListComponent } from './pages/admin/users/users-list/users-list.component';
-import { EditUsersComponent } from './pages/admin/users/edit-users/edit-users.component';
-import { LoginComponent } from './pages/auth/login/login.component';
-import { AdminDrawerModule } from './components/admin-drawer/admin-drawer.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -17,16 +12,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { RegisterComponent } from './pages/auth/register/register.component';
-import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
-import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
-import { UnauthorizedComponent } from './pages/errors/unauthorized/unauthorized.component';
-import { InternalServerComponent } from './pages/errors/internal-server/internal-server.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { ApiModule, BASE_PATH, Configuration, ConfigurationParameters } from '../providers/api-client.generated';
-import { SpinnerModule } from './components/spinner/spinner.module';
 import { AuthGuard } from './routes/guards/auth-guard';
 import { RoleGuard } from './routes/guards/role-guard';
 import { HttpInterceptor } from '../providers/http-interceptor';
@@ -45,18 +34,22 @@ export function apiConfigFactory(): Configuration {
   return new Configuration(params);
 }
 
+export const BasePageModulesList = [
+  CommonModule,
+  MatIconModule,
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatPaginatorModule,
+  FormsModule,
+  MatInputModule,
+  MatButtonModule,
+  MatSelectModule,
+  MatTabsModule,
+];
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    UsersListComponent,
-    EditUsersComponent,
-    LoginComponent,
-    RegisterComponent,
-    ForgotPasswordComponent,
-    NotFoundComponent,
-    UnauthorizedComponent,
-    InternalServerComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,21 +58,9 @@ export function apiConfigFactory(): Configuration {
     BrowserAnimationsModule,
     AppRoutingModule,
     ApiModule.forRoot(apiConfigFactory),
-    AdminDrawerModule,
-    CommonModule,
-    FormsModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSelectModule,
     RouterModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    MatPaginatorModule,
-    SpinnerModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatTabsModule,
   ],
   providers: [
     AuthGuard,
