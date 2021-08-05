@@ -22,46 +22,56 @@ const routes: Routes = [
   },
   {
     path: RoutesList.AdminHome,
-    component: HomeComponent,
+    loadChildren: () => import('../app/pages/admin/home/home.module').then(m => m.HomeAdminModule),
+    pathMatch: 'full',
     canActivate: [AuthGuard],
   },
   {
     path: RoutesList.Login,
-    component: LoginComponent,
+    loadChildren: () => import('../app/pages/auth/login/login.module').then(m => m.LoginModule),
+    pathMatch: 'full',
   },
   {
     path: RoutesList.Register,
-    component: RegisterComponent,
+    loadChildren: () => import('../app/pages/auth/register/register.module').then(m => m.RegisterModule),
+    pathMatch: 'full',
   },
   {
     path: RoutesList.ForgotPassword,
-    component: ForgotPasswordComponent,
+    loadChildren: () => import('../app/pages/auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule),
+    pathMatch: 'full',
   },
   {
     path: RoutesList.AdminUsers,
-    component: UsersListComponent,
+    loadChildren: () => import('../app/pages/admin/users/users-list/users-list.module').then(m => m.UsersListModule),
+    pathMatch: 'full',
     canActivate: [RoleGuard],
     data: { roles: [RolesList.Admin] },
   },
   {
     path: RoutesList.AdminUsers + '/:id',
-    component: EditUsersComponent
+    loadChildren: () => import('../app/pages/admin/users/edit-users/edit-users.module').then(m => m.EditUsersModule),
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
   },
   {
     path: RoutesList.Unauthorized,
-    component: UnauthorizedComponent,
+    loadChildren: () => import('../app/pages/errors/unauthorized/unauthorized.module').then(m => m.UnauthorizedModule),
+    pathMatch: 'full',
   },
   {
     path: RoutesList.InternalError,
-    component: InternalServerComponent,
+    loadChildren: () => import('../app/pages/errors/internal-server/internal-server.module').then(m => m.InternalServerModule),
+    pathMatch: 'full',
   },
   {
     path: RoutesList.NotFound,
-    component: NotFoundComponent,
+    loadChildren: () => import('../app/pages/errors/not-found/not-found.module').then(m => m.NotFoundModule),
+    pathMatch: 'full',
   },
   {
     path: '**',
-    component: NotFoundComponent,
+    loadChildren: () => import('../app/pages/errors/not-found/not-found.module').then(m => m.NotFoundModule),
   }
 ]
 
