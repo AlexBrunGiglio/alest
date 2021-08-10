@@ -1,9 +1,11 @@
 import { HttpClient, HttpErrorResponse, HttpEvent, HttpHandler, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { of } from "rxjs";
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AppResponseCode } from "../../../shared/shared-constant";
+import { RoutesList } from "../app/routes/routes";
 import { accessToken } from "../environments/constant";
 import { AuthProvider } from "../services/auth-provider";
 import { EventsHandler } from "../services/events.handler";
@@ -13,6 +15,7 @@ export class HttpInterceptor {
     constructor(
         private http: HttpClient,
         private authProvider: AuthProvider,
+        private router: Router,
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -63,6 +66,8 @@ export class HttpInterceptor {
 
                     if (err?.error?.message)
                         errorMessage = 'Vous avez été déconnecté : ' + err.error.message;
+                    localStorage.clear();
+                    this.router.navigateByUrl('/' + RoutesList.Login);
                 }
                 return of(new HttpResponse<GenericResponse>({ body: { message: errorMessage, success: false, statusCode: statusCode } }));
 
