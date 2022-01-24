@@ -184,8 +184,22 @@ export abstract class ApplicationBaseModelService<X extends { id: string | numbe
             response.handleError(err);
         }
         return response;
-
     }
+
+    public async deleteOne(id: string) {
+        if (!this.checkModelOptions())
+            return null;
+        const response = new GenericResponse();
+        try {
+            await this.modelOptions.repository.delete(id);
+            response.success = true;
+        }
+        catch (err) {
+            response.handleError(err);
+        }
+        return response;
+    }
+
     public async archive(ids: string[]) {
         if (!ids)
             return null;
@@ -208,6 +222,24 @@ export abstract class ApplicationBaseModelService<X extends { id: string | numbe
         return response;
     }
 
+    public async archiveOne(id: string) {
+        if (!id)
+            return null;
+        const response = new GenericResponse();
+        try {
+            const getOneResponse = await this.findOne({ where: { id: id } });
+            if (getOneResponse.success && getOneResponse[this.modelOptions.getOneResponseField]) {
+                getOneResponse[this.modelOptions.getOneResponseField][this.modelOptions.archiveField] = this.modelOptions.archiveFieldValue;
+                await this.createOrUpdate(getOneResponse[this.modelOptions.getOneResponseField]);
+            }
+            response.success = true;
+        }
+        catch (err) {
+            response.handleError(err);
+        }
+        return response;
+    }
+
     public async enable(ids: string[]) {
         if (!ids)
             return null;
@@ -223,6 +255,24 @@ export abstract class ApplicationBaseModelService<X extends { id: string | numbe
                 }
                 response.success = true;
             }
+        }
+        catch (err) {
+            response.handleError(err);
+        }
+        return response;
+    }
+
+    public async enableOne(id: string) {
+        if (!id)
+            return null;
+        const response = new GenericResponse();
+        try {
+            const getOneResponse = await this.findOne({ where: { id: id } });
+            if (getOneResponse.success && getOneResponse[this.modelOptions.getOneResponseField]) {
+                getOneResponse[this.modelOptions.getOneResponseField][this.modelOptions.archiveField] = !this.modelOptions.archiveFieldValue;
+                await this.createOrUpdate(getOneResponse[this.modelOptions.getOneResponseField]);
+            }
+            response.success = true;
         }
         catch (err) {
             response.handleError(err);

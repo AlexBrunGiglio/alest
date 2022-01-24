@@ -26,9 +26,9 @@ export class DatabaseService {
 
     private async createDefaultUsers() {
         await this.createUser({
-            firstname: "Alexandre",
-            lastname: "Brun-Giglio",
-            username: "alexbrun5",
+            firstname: "Admin",
+            lastname: "user",
+            username: "admin",
             mail: "admin@localhost.com",
             password: "admin",
             disabled: false,
